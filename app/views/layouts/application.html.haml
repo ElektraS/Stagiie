@@ -1,0 +1,19 @@
+!!!
+%html
+  %head
+    %title Rappelrails
+    %link{href: "//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css", rel: "stylesheet"}/
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+  %body
+    .jumbotron
+      .container
+        %h1 Stagiie
+        %p Partager l'expérience de la machine à café
+    .navbar navbar-default
+      .container-fluid
+        
+
+
+    = yield
