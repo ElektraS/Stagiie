@@ -134,10 +134,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise
-<<<<<<< HEAD
   haml-rails
-=======
->>>>>>> 4bdb5c8c8b94558a086ef888b00b2b0aa5fa7cb0
   jbuilder (~> 1.2)
   jquery-rails
   pg
