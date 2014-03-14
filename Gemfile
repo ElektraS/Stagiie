@@ -18,7 +18,11 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+<<<<<<< HEAD
  gem 'therubyracer', platforms: :ruby
+=======
+gem 'therubyracer', platforms: :ruby
+>>>>>>> 4bdb5c8c8b94558a086ef888b00b2b0aa5fa7cb0
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -34,6 +38,8 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'devise'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
@@ -45,4 +51,3 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-gem 'devise'
