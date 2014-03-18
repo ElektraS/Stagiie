@@ -11,14 +11,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140307161532) do
+ActiveRecord::Schema.define(version: 20140317142947) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "companies", force: true do |t|
+    t.string   "name"
+    t.string   "field"
+    t.string   "web_site"
+    t.string   "mail"
+    t.string   "phone"
+    t.string   "adress"
+    t.string   "existence"
+    t.text     "supervisors"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "internships", force: true do |t|
+    t.string   "company"
+    t.string   "field"
+    t.string   "supervisor"
+    t.text     "commentary"
+    t.string   "period"
+    t.integer  "schoolyear"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "student_id"
+  end
+
+  add_index "internships", ["student_id"], name: "index_internships_on_student_id", using: :btree
+
   create_table "students", force: true do |t|
     t.string   "name"
-    t.string   "string"
     t.string   "first_name"
     t.string   "mail"
     t.integer  "year"
