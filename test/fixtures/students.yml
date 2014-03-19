@@ -2,7 +2,6 @@
 
 one:
   name: MyString
-  string: MyString
   first_name: MyString
   mail: MyString
   year: 1
@@ -10,7 +9,6 @@ one:
 
 two:
   name: MyString
-  string: MyString
   first_name: MyString
   mail: MyString
   year: 1

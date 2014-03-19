@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  company: MyString
+  field: MyString
+  supervisor: MyString
+  commentary: MyText
+  period: MyString
+  schoolyear: 1
+
+two:
+  company: MyString
+  field: MyString
+  supervisor: MyString
+  commentary: MyText
+  period: MyString
+  schoolyear: 1
