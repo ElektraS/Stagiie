@@ -1,11 +1,15 @@
 class InternshipsController < ApplicationController
   def new
-  	@internship=Internship.new
+  	if user_signed_in?
+  		@internship=Internship.new
+  	end
   end
+
   def create
-  	binding.pry
-  	@internship=Internship.new internship_params
-  	@internship.save
+  	if user_signed_in?
+	  	@internship=Internship.new internship_params
+	  	@internship.save
+	end
   end
 
   protected
