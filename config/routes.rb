@@ -6,6 +6,8 @@ ProjetWeb::Application.routes.draw do
 
   get "/" => "accueil#login"
 
+  get "/internships/new" => "internships#new"
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.

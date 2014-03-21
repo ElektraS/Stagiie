@@ -1,0 +1,24 @@
+Voila
+
+<%= form_for @internship do |f| %>
+ <div> <%= f.label :company %>:
+  <%= f.text_field :company%><br /></div> 
+
+  <div><%= f.label :field %>:
+  <%= f.text_field :field %><br /></div>
+
+  <div><%= f.label :supervisor %>:
+  <%= f.text_field :supervisor %><br /></div>
+
+  <div><%= f.label :commentary %>:
+  <%= f.text_field :commentary %><br /></div>
+
+  <div><%= f.label :period %>:
+  <%= f.text_field :period %><br /></div>
+
+  <div><%= f.label :schoolyear %>:
+  <%= f.integer_field :schoolyear %><br /></div>
+
+  <%= f.submit %>
+<% end %>
+
