@@ -52,11 +52,12 @@
                     |
                     %li
                       \#{link_to "Login", new_user_session_path, :class => 'navbar-link'}          
+    .container
+      .jumbotron
+        .page-header
+          %h1
+            Stagiie
+            %small Venez partager l'expérience de la machine à café
 
-    .jumbotron
-      .container
-        %h1 Stagiie
-        %a{href: "/"}
-        %p Partager l'expérience de la machine à café
-
-    = yield
+    .container
+      = yield
