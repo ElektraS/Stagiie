@@ -1,23 +1,23 @@
 Voila
 
 <%= form_for @internship do |f| %>
- <div> <%= f.label :company %>:
+ <div> <%= f.label :Entreprise %>:
   <%= f.text_field :company%><br /></div> 
 
-  <div><%= f.label :field %>:
+  <div><%= f.label :Domaine %>:
   <%= f.text_field :field %><br /></div>
 
-  <div><%= f.label :supervisor %>:
+  <div><%= f.label :Maître_de_Stage %>:
   <%= f.text_field :supervisor %><br /></div>
 
-  <div><%= f.label :commentary %>:
+  <div><%= f.label :Commentaire %>:
   <%= f.text_field :commentary %><br /></div>
 
-  <div><%= f.label :period %>:
+  <div><%= f.label :Période %>:
   <%= f.text_field :period %><br /></div>
 
-  <div><%= f.label :schoolyear %>:
-  <%= f.integer_field :schoolyear %><br /></div>
+  <div><%= f.label :Année %>:
+  <%= f.number_field :schoolyear %><br /></div>
 
   <%= f.submit %>
 <% end %>
