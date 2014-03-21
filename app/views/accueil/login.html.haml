@@ -1,3 +1,8 @@
-Hello
-
-%a{href: "./views/internships/accueil.html.haml"}
+-if user_signed_in?
+	%h2 BIENVENUE
+	%h1 Les derniers témoignages
+	-@internships.each do |i|
+		%h3
+			= i.company 
+-else
+	%h2 Veuillez vous connectez	
