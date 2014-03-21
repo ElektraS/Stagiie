@@ -6,19 +6,19 @@
   <div><%= f.label :Nom %><br />
   <%= f.text_field :name %></div>
 
-  <div><%= f.label :Prenom %><br />
+  <div><%= f.label :Prénom %><br />
   <%= f.text_field :firts_name%></div>
 
   <div><%= f.label :email %><br />
   <%= f.email_field :email %></div>
 
-  <div><%= f.label :year %><br />
-  <%= f.text_field :year %></div>
+  <div><%= f.label :Année %><i> Année de graduation, exemple '2016'</i><br />
+  <%= f.number_field :year %></div>
 
-  <div><%= f.label :phone %><br />
-  <%= f.text_field :phone %></div>
+  <div><%= f.label :Numéro_de_téléphone %><i> Exemple '0101010101' </i><br />
+  <%= f.number_field :phone %></div>
 
-  <div><%= f.label :password %><br />
+  <div><%= f.label :password %><i>Écrire 8 caractères au minimum </i><br />
   <%= f.password_field :password %></div>
 
   <div><%= f.label :password_confirmation %><br />
