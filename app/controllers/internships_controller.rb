@@ -13,7 +13,16 @@ class InternshipsController < ApplicationController
   end
 
   def show
-    @internship = Internship.find params[:id]
+    if user_signed_in?
+      @internship = Internship.find params[:id]
+    end
+  end
+
+  def remove
+    if user_signed_in?
+      @internship = Internship.find params[:id]
+      @internship.destroy
+    end
   end
   
   protected
