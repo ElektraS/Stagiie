@@ -1,0 +1,45 @@
+-if user_signed_in?
+  = form_for @internship do |f|
+    %div
+      = f.label :Entreprise
+      \:
+      %br/
+      = f.text_field :comp
+      %br/
+    %div
+      = f.label :Domaine
+      \:
+      %i Exemple : 'C#'
+      %br/
+      = f.text_field :field
+      %br/
+    %div
+      = f.label :Maître_de_Stage
+      \:
+      %i Exemple : "Pierre Tellier"
+      %br/
+      = f.text_field :supervisor
+      %br/
+    %div
+      = f.label :Commentaire
+      \:
+      %br/
+      = f.text_field :commentary
+      %br/
+    %div
+      = f.label :Période
+      \:
+      %i Exemple : ' du 1er juillet 2013 au 29 août 2013'
+      %br/
+      = f.text_field :period
+      %br/
+    %div
+      = f.label :Année
+      \:
+      %i Exemple : '1' s'il s'agit du stage de 1ère année.
+      %br/
+      = f.number_field :schoolyear
+      %i A
+    = f.submit
+-else 
+  %h2 Veuillez vous connecter
