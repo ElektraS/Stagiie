@@ -3,7 +3,6 @@ class InternshipsController < ApplicationController
   	@internship=Internship.new
   end
   def create
-  	binding.pry
   	@internship=Internship.new internship_params
   	@internship.save
   end
