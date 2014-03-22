@@ -6,6 +6,8 @@ ProjetWeb::Application.routes.draw do
 
   get "/" => "accueil#login"
 
+  get "/" => "internships#view"
+
   resources :internships
 
 
