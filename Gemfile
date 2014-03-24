@@ -42,6 +42,10 @@ group :development, :test do
 	gem 'pry-rails'
 end
 
+gem 'pg_search'
+
+#gem 'sunspot_rails'
+#gem 'sunspot_solr'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

@@ -1,0 +1,57 @@
+-if user_signed_in?
+  = form_for @company do |f|
+    %div
+      = f.label :Nom_de_l_Entreprise
+      \:
+      %br/
+      = f.text_field :name
+      %br/
+    %div
+      = f.label :Domaine
+      \:
+      %i Exemple : 'Éditeur de jeux vidéos'
+      %br/
+      = f.text_field :field
+      %br/
+    %div
+      = f.label :Site_Web
+      \:
+      %br/
+      = f.url_field :web_site
+      %br/
+    %div
+      = f.label :Mail
+      \:
+      %br/
+      = f.email_field :mail
+      %br/
+    %div
+      = f.label :Téléphone
+      \:
+      %i Exemple : '0101010101'
+      %br/
+      = f.number_field :phone
+      %br/
+    %div
+      = f.label :Adresse
+      \:
+      %i Exemple : 4, avenue des champs Élysées, 75000 Paris
+      %br/
+      = f.text_field :adress
+    %div
+      = f.label :Existence 
+      \:
+      %br/
+      = f.text_field :existence
+      %br
+   
+    %div
+      = f.label :Superviseurs
+      \:
+      %br/
+      = f.text_field :supervisors
+      %br
+
+    = f.submit
+-else 
+  %h2 Veuillez vous connecter

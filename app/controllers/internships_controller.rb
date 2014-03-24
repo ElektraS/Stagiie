@@ -28,14 +28,9 @@ class InternshipsController < ApplicationController
     end
   end
 
-
-  
   protected
   def internship_params
   	params.require(:internship).permit(:comp, :field, :supervisor, :commentary, :period, :schoolyear)
   end
 
-
-  def view
-  end
 end

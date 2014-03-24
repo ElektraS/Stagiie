@@ -1,0 +1,27 @@
+-if user_signed_in?
+  %h1
+  = @company.name
+
+  %h2
+  = @company.field
+
+  %p
+  = @company.web_site
+
+  %p
+  = @company.mail
+
+  %p
+  = @company.phone
+
+  %p
+  = @company.adress
+
+  %p
+  = @company.existence
+
+  %p
+  = @company.supervisors
+
+  =button_to "supprimer", { :controller => :companies, :action => 'destroy', :id => @company.id }, :method => :delete, class: "btn btn-danger"
+
