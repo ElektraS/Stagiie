@@ -6,12 +6,11 @@ ProjetWeb::Application.routes.draw do
 
   get "/" => "accueil#login"
 
-  get "/internships/remove" =>"internships#remove"
+  #get "/internships/destroy" => "internships#destroy"
   
   root 'internships#index'
   resources :internships
 
-  get "/internships/remove" =>"internships#remove"
 
 
 

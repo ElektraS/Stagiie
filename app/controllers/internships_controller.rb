@@ -9,21 +9,26 @@ class InternshipsController < ApplicationController
   	if user_signed_in?
 	  	@internship=Internship.new internship_params
 	  	@internship.save
-	end
+      redirect_to "/internships/#{@internship.id}"
+    end
   end
 
+  def destroy
+    if user_signed_in?
+
+      @internship = Internship.find params[:id]
+      @internship.destroy
+      redirect_to "/"
+    end
+  end
+  
   def show
     if user_signed_in?
       @internship = Internship.find params[:id]
     end
   end
 
-  def remove
-    if user_signed_in?
-      @internship = Internship.find params[:id]
-      @internship.destroy
-    end
-  end
+
   
   protected
   def internship_params
