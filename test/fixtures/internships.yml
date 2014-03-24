@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  company: MyString
+  comp: MyString
   field: MyString
   supervisor: MyString
   commentary: MyText
@@ -9,7 +9,7 @@ one:
   schoolyear: 1
 
 two:
-  company: MyString
+  comp: MyString
   field: MyString
   supervisor: MyString
   commentary: MyText
