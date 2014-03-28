@@ -1,6 +1,6 @@
 -if user_signed_in?
   %h1
-  = @internship.comp
+    = @internship.comp
 
   %h2
   = @internship.field
@@ -17,9 +17,10 @@
   %p
   = @internship.schoolyear
 
-  =button_to "supprimer", { :controller => :internships, :action => 'destroy', :id => @internship.id }, :method => :delete, class: "btn btn-danger"
-
   = link_to 'Edit', edit_internship_path(@internship)
+  =button_to 'Editer', { :controller => :internships, :action => 'edit', :id => @internship.id}, class: "btn btn-primary"
+  =button_to "Supprimer", { :controller => :internships, :action => 'destroy', :id => @internship.id }, :method => :delete, class: "btn btn-danger"
+
   
 -else 
   %p Page non disponible hors connection !

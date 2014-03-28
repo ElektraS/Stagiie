@@ -8,6 +8,7 @@ class InternshipsController < ApplicationController
   def create
   	if user_signed_in?
 	  	@internship=Internship.new internship_params
+      @internship.user_id=current_user.id
 	  	@internship.save
       redirect_to "/internships/#{@internship.id}"
     end
@@ -15,7 +16,6 @@ class InternshipsController < ApplicationController
 
   def destroy
     if user_signed_in?
-
       @internship = Internship.find params[:id]
       @internship.destroy
       redirect_to "/"
