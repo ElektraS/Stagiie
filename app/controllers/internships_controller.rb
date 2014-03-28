@@ -52,17 +52,6 @@ class InternshipsController < ApplicationController
     end
   end
 
- protect_from_forgery
- 
-  private
- 
-  def authenticate
-    authenticate_or_request_with_http_basic do |user_name, password|
-      user_name == 'admin' && password == 'password'
-    end
-  end
-
-
   protected
   def internship_params
   	params.require(:internship).permit(:comp, :field, :supervisor, :commentary, :period, :schoolyear)

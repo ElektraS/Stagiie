@@ -1,57 +1,46 @@
 -if user_signed_in?
+  %h2 Édition
   = form_for @company do |f|
+    - if @company.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@company.errors.count, "errors")} prohibited this annonce from being saved: "
+        %ul
+          - @company.errors.full_messages.each do |msg|
+            %li = msg
     %div
       = f.label :Nom_de_l_Entreprise
-      \:
       %br/
       = f.text_field :name
-      %br/
     %div
       = f.label :Domaine
-      \:
-      %i Exemple : 'Éditeur de jeux vidéos'
       %br/
       = f.text_field :field
-      %br/
     %div
       = f.label :Site_Web
-      \:
       %br/
       = f.url_field :web_site
-      %br/
     %div
       = f.label :Mail
-      \:
       %br/
       = f.email_field :mail
-      %br/
     %div
       = f.label :Téléphone
-      \:
-      %i Exemple : '0101010101'
       %br/
       = f.number_field :phone
-      %br/
     %div
       = f.label :Adresse
-      \:
-      %i Exemple : 4, avenue des champs Élysées, 75000 Paris
       %br/
-      = f.text_field :adress
+      = f.text_area :adress
     %div
-      = f.label :Existence 
-      \:
+      = f.label :Existence
       %br/
       = f.text_field :existence
-      %br
-   
     %div
       = f.label :Maîtres_de_stages
-      \:
       %br/
       = f.text_area :supervisors
-      %br
+    %div= f.submit "Update"
 
-    = f.submit
+    = link_to "Back", :back 
 -else 
   %h2 Veuillez vous connecter
