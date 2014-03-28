@@ -21,12 +21,47 @@ class InternshipsController < ApplicationController
       redirect_to "/"
     end
   end
+
+  def edit
+    if user_signed_in?
+      @internship = Internship.find params[:id]
+    end
+  end
+
+  def update
+    if user_signed_in?
+      @internship = Internship.find(params[:id])
+     
+      respond_to do |f|
+        if @internship.update internship_params
+          f.html { redirect_to(@internship,
+                        :notice => 'Post was successfully updated.') }
+          f.xml  { head :ok }
+        else
+          f.html { render :action => "edit" }
+          f.xml  { render :xml => @internship.errors,
+                        :status => :unprocessable_entity }
+        end
+      end
+    end
+  end
   
   def show
     if user_signed_in?
       @internship = Internship.find params[:id]
     end
   end
+
+ protect_from_forgery
+ 
+  private
+ 
+  def authenticate
+    authenticate_or_request_with_http_basic do |user_name, password|
+      user_name == 'admin' && password == 'password'
+    end
+  end
+
 
   protected
   def internship_params

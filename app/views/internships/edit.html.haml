@@ -1,0 +1,42 @@
+-if user_signed_in?
+  %h2 Édition
+  = form_for @internship do |f|
+    - if @internship.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@internship.errors.count, "errors")} prohibited this annonce from being saved: "
+        %ul
+          - @internship.errors.full_messages.each do |msg|
+            %li = msg
+    %div
+      = f.label :Companie
+      %br/
+      = f.text_field :comp
+    %div
+      = f.label :Domaine
+      %br/
+      = f.text_field :field
+    %div
+      = f.label :Maître_de_stage
+      %br/
+      = f.text_field :supervisor
+    %div
+      = f.label :Commentaire
+      %br/
+      = f.text_field :commentary
+    %div
+      = f.label :Période
+      %i Exemple : ' du 1er juillet 2013 au 29 août 2013'
+      %br/
+      = f.text_field :period
+    %div
+      = f.label :Année
+      %br
+      %i Exemple : '1' s'il s'agit du stage de 1ère année.
+      %br/
+      = f.number_field :schoolyear
+      %i A
+    %div= f.submit "Update"
+
+    = link_to "Back", :back
+-else 
+  %h2 Veuillez vous connecter
