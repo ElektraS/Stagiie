@@ -1,32 +1,40 @@
 -if user_signed_in?
-  %h1
-  = @company.name
+  .container
+    .row
+      .col-md-9
+        .row
+          .col-md-1
+            =button_to "Editer", { :controller => :companies, :action => 'edit', :id => @company.id }, class: "btn btn-primary", :method => 'get'
+          .col-md-1
+            =button_to "Supprimer", { :controller => :companies, :action => 'destroy', :id => @company.id }, :method => :delete, class: "btn btn-danger"
 
-  %h2
-  = @company.field
+  %h3
+    = "Fiche entreprise : "+@company.name
+    %small
+      ="crée par"
+  %dl.dl-horizontal
+    %dt
+      Domaine d'activité
+    %dd
+      =@company.field
+    %dt
+      Site internet
+    %dd
+      =@company.web_site
+    %dt
+      Contact mail
+    %dd
+      =@company.mail
+    %dt
+      Adresse
+    %dd
+      =@company.adress
+    %dt
+      Contact téléphone
+    %dd
+      =@company.phone
 
-  %p
-  = @company.web_site
 
-  %p
-  = @company.mail
-
-  %p
-  = @company.phone
-
-  %p
-  = @company.adress
-
-  %p
-  = @company.existence
-
-  %p
-  = @company.supervisors
-
-  =button_to "supprimer", { :controller => :companies, :action => 'destroy', :id => @company.id }, :method => :delete, class: "btn btn-danger"
-
-  = link_to 'Edit', edit_company_path(@company)
-  
 -else 
   %p Page non disponible hors connection 
 
