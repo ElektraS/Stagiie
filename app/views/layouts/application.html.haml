@@ -28,6 +28,8 @@
               %a{href: "/companies/new"}Nouvelle fiche d'Entreprise
             %li
               %a{href: "about/us"} A propos de nous
+            %li
+              = render :partial => 'internships/search'
           %ul.nav.navbar-nav.navbar-right
             - if user_signed_in?
               Logged in as

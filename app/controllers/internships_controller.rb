@@ -52,6 +52,10 @@ class InternshipsController < ApplicationController
     end
   end
 
+  def search
+    @internships = Internship.search params[:search]
+  end
+
   protected
   def internship_params
   	params.require(:internship).permit(:comp, :field, :supervisor, :commentary, :period, :schoolyear)
