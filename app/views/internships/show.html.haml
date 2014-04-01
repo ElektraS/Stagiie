@@ -1,21 +1,4 @@
 -if user_signed_in?
-  %h1
-    = @internship.comp
-
-  %h2
-  = @internship.field
-
-  %p
-  = @internship.supervisor
-
-  %p
-  = @internship.commentary
-
-  %p
-  = @internship.period
-
-  %p
-  = @internship.schoolyear
 
   .container
     .row
@@ -25,11 +8,33 @@
             %a
               =button_to 'Editer', {:controller => :internships, :action => 'edit', :id => @internship.id}, class: "btn btn-primary", :method=> 'get'
           .col-md-1
-
             %a 
               =button_to "Supprimer", { :method => 'get', :controller => :internships, :action => 'destroy', :id => @internship.id }, :method => :delete, class: "btn btn-danger"
 
-  
+  %h3
+    = "Fiche stage chez : "+@internship.comp
+    %small
+      ="crée par"
+  %dl.dl-horizontal
+    %dt
+      Domaine d'activité
+    %dd
+      =@internship.field
+    %dt
+      Maitre de stage
+    %dd
+      =@internship.supervisor
+    %dt
+      Commentaire
+    %dd
+      =@internship.commentary
+    %dt
+      Période de stage
+    %dd
+      =@internship.period
+    %dt
+      Stage
+
 -else 
   %p Page non disponible hors connection !
 
