@@ -1,38 +1,49 @@
 -if user_signed_in?
-  .container
-    .row
-      .col-md-9
-        .row
-          .col-md-1
-            =button_to "Editer", { :controller => :companies, :action => 'edit', :id => @company.id }, class: "btn btn-primary", :method => 'get'
-          .col-md-1
-            =button_to "Supprimer", { :controller => :companies, :action => 'destroy', :id => @company.id }, :method => :delete, class: "btn btn-danger"
 
-  %h6
-    = "Fiche entreprise : "+@company.name
-    %small
-      ="crée par"
-  %dl.dl-horizontal
-    %dt
-      Domaine d'activité
-    %dd
-      =@company.field
-    %dt
-      Site internet
-    %dd
-      =@company.web_site
-    %dt
-      Contact mail
-    %dd
-      =@company.mail
-    %dt
-      Adresse
-    %dd
-      =@company.adress
-    %dt
-      Contact téléphone
-    %dd
-      =@company.phone
+  .panel.panel-success
+    .panel-heading
+      %h6
+        = "Fiche entreprise : "+@company.name
+        %small
+          ="crée par" 
+          
+    .panel-body         
+      %dl.dl-horizontal
+        %dt
+          Domaine d'activité
+        %dd
+          =@company.field
+        %dt
+          Site internet
+        %dd
+          =@company.web_site
+        %dt
+          Contact mail
+        %dd
+          =@company.mail
+        %dt
+          Adresse
+        %dd
+          =@company.adress
+        %dt
+          Contact téléphone
+        %dd
+          =@company.phone
+    .panel-footer
+      .show_internship
+        - if user_signed_in?
+          .row
+            .col-md-6
+              .suppr
+                %a
+                  =button_to 'Editer', { :controller => :companies, :action => 'edit', :id => @company.id }, class: "btn btn-primary", :method => 'get'
+            .col-md-6
+              .editer
+                %a 
+                  =button_to "Supprimer", { :controller => :companies, :action => 'destroy', :id => @company.id }, :method => :delete, class: "btn btn-danger"
+        - else
+          %a
+            =button_to 'Signaler', { :controller => :companies, :action => 'edit', :id => @company.id }, class: "btn btn-primary", :method => 'get' 
 
 
 -else

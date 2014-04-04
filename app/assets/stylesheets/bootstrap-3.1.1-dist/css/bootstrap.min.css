@@ -460,7 +460,7 @@ dd {
     text-align: right;
     text-overflow: ellipsis;
     white-space: nowrap;
-    width: 160px;
+    width: 180px;
 }
 .dl-horizontal dd {
     margin-left: 180px;

@@ -2,7 +2,7 @@
 %html
   %head
     %title Stagiie
-    /%link{href: "app/assets/stylsheets/bootstrap-3.1.1-dist/css/bootstrap.min.css", rel: "stylesheet"}/
+    %link{href: "app/assets/stylsheets/bootstrap-3.1.1-dist/css/bootstrap.min.css", rel: "stylesheet"}/
     %link{href: "app/assets/stylsheets/flat-ui.css", rel: "stylesheet"}/
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
@@ -22,7 +22,27 @@
             %li
               %a{href: "/companies/new"} ++ Fiche entreprise
             %li
-              %a{href: "about/us"} A propos
+              %a{"data-target" => ".bs-example-modal-lg", "data-toggle" => "modal"} A propos
+              .modal.fade.bs-example-modal-lg{"aria-hidden" => "true", "aria-labelledby" => "myLargeModalLabel", role: "dialog", tabindex: "-1"}
+                .modal-dialog.modal-lg
+                  .modal-content
+                    .modal-header
+                      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+                      %h4.modal-title Stagiie - Pour le partage d'expériences entre ensiiens
+                    .modal-body
+                      %h6 Quel est le but de ce site ?
+                      %p Cette application web est destinée à l'ensemble des étudiants de l'ENSIIE, école nationale supérieure d'informatique pour l'industrie et l'entreprise. Elle permet aux étudiants qui recherchent un stage d'été d'obtenir des informations, des exemples de ce qu'il est possible de faire dans un stage ou encore d'avoir accès à une base de données d'entreprises qui ont des relations avec l'école.               
+                      %h6 Pourquoi ce site ?
+                      %p Ce site fait l'objet d'un sujet de programmation web au cours du semestre 2 de formation. Il est développé en Ruby on Rails, utilise le javasript ainsi qu'une base de donnée postgreSQL.
+                      %h6 L'équipe
+                      %p La dream team chargée du développement est consituée de 2 étudiants
+                      %ul
+                        %li
+                          %p Aurélie Pallas
+                        %li
+                          %p Olivier Staub
+                    .modal-footer
+                      %button.btn.btn-danger{"data-dismiss" => "modal", type: "button"} Fermer
           %ul.nav.navbar-nav.navbar-right
             - if user_signed_in?
               %li
@@ -47,6 +67,5 @@
         %h4
           Stagiie
           %small Venez partager l'expérience de la machine à café
-
     .container
       = yield
