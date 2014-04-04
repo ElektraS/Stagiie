@@ -8,7 +8,7 @@
           .col-md-1
             =button_to "Supprimer", { :controller => :companies, :action => 'destroy', :id => @company.id }, :method => :delete, class: "btn btn-danger"
 
-  %h3
+  %h6
     = "Fiche entreprise : "+@company.name
     %small
       ="crée par"
@@ -35,6 +35,10 @@
       =@company.phone
 
 
--else 
-  %p Page non disponible hors connection 
+-else
+  %h4
+    ="Hello stranger"
+    %small
+      ="veuillez vous connecter ou vous inscrire pour accéder au site !"
+
 

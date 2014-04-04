@@ -3,22 +3,10 @@
 
   .panel.panel-info
     .panel-heading
-      .container
-        .row
-          .col-md-10
-            %h3
-              = "Fiche stage chez : "+@internship.comp
-              %small
-                ="crée par"
-          .col-md-2
-            - if current_user.id==@internship.user_id
-              %a
-                =button_to 'Editer', {:controller => :internships, :action => 'edit', :id => @internship.id}, class: "btn btn-primary", :method=> 'get'
-              %a 
-                =button_to "Supprimer", { :method => 'get', :controller => :internships, :action => 'destroy', :id => @internship.id }, :method => :delete, class: "btn btn-danger"
-            - else
-              %a
-                =button_to 'Signaler', {:controller => :internships, :action => 'edit', :id => @internship.id}, class: "btn btn-danger", :method=> 'get'              
+      %h6
+        = "Fiche stage chez : "+@internship.comp
+        %small
+          ="crée par"          
     .panel-body
       %dl.dl-horizontal
         %dt
@@ -39,6 +27,21 @@
           =@internship.period
         %dt
           Stage
+    .panel-footer
+      .show_internship
+        - if current_user.id==@internship.user_id
+          .row
+            .col-md-6
+              .suppr
+                %a
+                  =button_to 'Editer', {:controller => :internships, :action => 'edit', :id => @internship.id}, class: "btn btn-primary", :method=> 'get'
+            .col-md-6
+              .editer
+                %a 
+                  =button_to "Supprimer", { :method => 'get', :controller => :internships, :action => 'destroy', :id => @internship.id }, :method => :delete, class: "btn btn-danger"
+        - else
+          %a
+            =button_to 'Signaler', {:controller => :internships, :action => 'edit', :id => @internship.id}, class: "btn btn-danger", :method=> 'get'     
 
 -else 
   %p 
