@@ -5,17 +5,18 @@
 			=@current_user.firts_name+" "+@current_user.name 
 	.row
 		.col-md-6
-			%h5 Les derniers témoignages
+			%h5 Les témoignages
 			-@internships.reverse.each do |i|
 				.panel.panel-info
-					.panel-heading
-						%p
-							= "Chez "+ i.comp+" fait par"	
-					.panel-body
-						%p 
-							= i.field
-						%p
-							= i.supervisor
+					.panel-heading				
+						= "Chez "+i.comp+" fait par"	
+					#collapseOne
+					.panel-collapse.collapse.in
+						.panel-body
+							%p 
+								= i.field
+							%p
+								= i.supervisor
 					.panel-footer
 						=link_to 'Voir la fiche', {:controller => :internships, :action => :show, :id => i.id}	
 		.col-md-6
@@ -23,8 +24,7 @@
 			-@compagny.reverse.each do |j|
 				.panel.panel-success
 					.panel-heading
-						%p
-							= j.name
+						= j.name
 					.panel-body
 						%p
 							=j.field

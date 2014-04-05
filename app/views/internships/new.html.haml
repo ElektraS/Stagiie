@@ -1,46 +1,22 @@
 -if user_signed_in?
-  = form_for @internship do |f|
+  %h4 Nouveau Stage
+ 
+  = bootstrap_form_for(@internship, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-8") do |f|
     %div
-      = f.label :Entreprise
-      \:
-      %br/
-      = f.text_field :comp
-      %br/
+      = f.text_field :comp, label: "Entreprise", placeholder: "Nom"
     %div
-      = f.label :Domaine
-      \:
-      %i Exemple : 'C#'
-      %br/
-      = f.text_field :field
-      %br/
+      = f.text_field :field, label: "Domaine", placeholder: "Techniques et/ou technologies utilisées pendant le stage"
     %div
-      = f.label :Maître_de_Stage
-      \:
-      %i Exemple : "Pierre Tellier"
-      %br/
-      = f.text_field :supervisor
-      %br/
+      = f.text_field :supervisor, label:"Maitre de Stage", placeholder: "Nom ou contact"
     %div
-      = f.label :Commentaire
-      \:
-      %br/
-      = f.text_area :commentary
-      %br/
+      = f.text_area :commentary, label: "Sujet et commentaire", placeholder: "Détaillez ici le contennu du stage, son déroulement, ses conditions. N'oubliez pas d'ajouter une partie personnelle. Conseillez-vous à quelqu'un d'autre de faire le même stage ?"
     %div
-      = f.label :Période
-      \:
-      %i Exemple : ' du 1er juillet 2013 au 29 août 2013'
-      %br/
-      = f.text_field :period
-      %br/
+      = f.text_field :period, label: "Durée du stage"
     %div
-      = f.label :Année
-      \:
-      %i Exemple : '1' s'il s'agit du stage de 1ère année.
-      %br/
-      = f.number_field :schoolyear
-      %i A
-    = f.submit
+      = f.number_field :schoolyear, label: "Semestre", placeholder: "Précisez, stage de 1A, 2A ou 3A"
+    %div
+      .btenregistrer
+        = f.primary "Enregistrer", layout: :inline
 -else
   %h5
     ="Hello stranger"

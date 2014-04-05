@@ -28,7 +28,10 @@
                   .modal-content
                     .modal-header
                       %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
-                      %h4.modal-title Stagiie - Pour le partage d'expériences entre ensiiens
+                      %h4 
+                        Stagiie
+                        %small 
+                          Pour le partage d'expériences entre ensiiens
                     .modal-body
                       %h6 Quel est le but de ce site ?
                       %p Cette application web est destinée à l'ensemble des étudiants de l'ENSIIE, école nationale supérieure d'informatique pour l'industrie et l'entreprise. Elle permet aux étudiants qui recherchent un stage d'été d'obtenir des informations, des exemples de ce qu'il est possible de faire dans un stage ou encore d'avoir accès à une base de données d'entreprises qui ont des relations avec l'école.               
@@ -48,7 +51,7 @@
               %li
                 = link_to 'Edit profile ('+current_user.email+')', edit_user_registration_path, :class => 'navbar-link'
               %li
-                \#{link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'}
+                \#{link_to "Se déconnecter", destroy_user_session_path, method: :delete, :class => 'navbar-link'}
             - else 
               - if admin_signed_in?
                 Admin is
@@ -59,9 +62,9 @@
                   \#{link_to "Logout", destroy_admin_session_path, method: :delete, :class => 'navbar-link'}
               - else
                 %li
-                  = link_to "Sign up", new_user_registration_path, :class => 'navbar-link'
+                  = link_to "S'inscrire", new_user_registration_path, :class => 'navbar-link'
                 %li
-                  \#{link_to "Login", new_user_session_path, :class => 'navbar-link'}          
+                  \#{link_to "Se connecter", new_user_session_path, :class => 'navbar-link'}          
     .container
       .titre
         %h4
