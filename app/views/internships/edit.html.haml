@@ -1,5 +1,5 @@
 -if user_signed_in?
-  %h4 Édition
+  %h4 Éditer un stage
   = bootstrap_form_for(@internship, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-8") do |f|
     - if @internship.errors.any?
       #error_explanation
@@ -23,6 +23,5 @@
       .btenregistrer
         = f.primary "Enregistrer", layout: :inline
 
-    = link_to "Retour", :back
 -else 
   %h2 Veuillez vous connecter
