@@ -81,3 +81,9 @@ h3 small, h5 small {
 .center {
 	text-align:  center;
 }
+
+.alert-success {
+	color:#ecf0f1;
+	background-image: none; 
+	background-color: #2ecc71 !important;
+}

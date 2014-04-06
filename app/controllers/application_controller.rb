@@ -13,4 +13,6 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) << :phone << :phone
     devise_parameter_sanitizer.for(:sign_up) << :year << :year
   end
+
+
 end

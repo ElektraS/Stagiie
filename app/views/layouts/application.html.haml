@@ -36,7 +36,7 @@
                       %h6 Quel est le but de ce site ?
                       %p Cette application web est destinée à l'ensemble des étudiants de l'ENSIIE, école nationale supérieure d'informatique pour l'industrie et l'entreprise. Elle permet aux étudiants qui recherchent un stage d'été d'obtenir des informations, des exemples de ce qu'il est possible de faire dans un stage ou encore d'avoir accès à une base de données d'entreprises qui ont des relations avec l'école.               
                       %h6 Pourquoi ce site ?
-                      %p Ce site fait l'objet d'un sujet de programmation web au cours du semestre 2 de formation. Il est développé en Ruby on Rails, utilise le javasript ainsi qu'une base de donnée postgreSQL.
+                      %p Ce site fait l'objet d'un sujet de programmation web au cours du semestre 2 de formation. Il est développé en Ruby on Rails 4, s'appuie sur une base de donnée PostgreSQL 9.1 et utilise le template Twitter Bootstrap 3 modifié.
                       %h6 L'équipe
                       %p La dream team chargée du développement est consituée de 2 étudiants
                       %ul
@@ -49,7 +49,7 @@
           %ul.nav.navbar-nav.navbar-right
             - if user_signed_in?
               %li
-                = link_to 'Edit profile ('+current_user.email+')', edit_user_registration_path, :class => 'navbar-link'
+                = link_to current_user.firts_name+' '+current_user.name, edit_user_registration_path, :class => 'navbar-link'
               %li
                 \#{link_to "Se déconnecter", destroy_user_session_path, method: :delete, :class => 'navbar-link'}
             - else 
@@ -70,5 +70,9 @@
         %h4
           Stagiie
           %small Venez partager l'expérience de la machine à café
+      - if flash[:alert]
+        .alert.alert-success.alert-dissmissable
+          %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", type: "button"} ×
+          = flash[:alert]
     .container
       = yield

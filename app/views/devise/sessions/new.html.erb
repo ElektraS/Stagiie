@@ -1,10 +1,10 @@
-<div class="sign_in">
 <h4>Se connecter</h4>
 
+<div class="sign_in">
 <%= bootstrap_form_for(resource, :as => resource_name, :url => session_path(resource_name),layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-8") do |f| %>
-  <div><%= f.email_field :email, :autofocus => true %></div>
+  <div><%= f.email_field :email, :autofocus => true, label: "Email" %></div>
 
-  <div><%= f.password_field :password %></div>
+  <div><%= f.password_field :password, label: "Mot de passe"%></div>
 
   <% if devise_mapping.rememberable? -%>
     <div><%= f.check_box :remember_me %></div>
