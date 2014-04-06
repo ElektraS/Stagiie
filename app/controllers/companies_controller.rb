@@ -8,8 +8,12 @@ class CompaniesController < ApplicationController
   def create
   	if user_signed_in?
 	  	@company=Company.new company_params
+      @company.user_id=current_user.id
 	  	@company.save
-      redirect_to "/companies/#{@company.id}"
+      if @internship.persisted?
+        flash[:alert_success] = "Fiche enregistrée"
+        redirect_to "/companies/#{@company.id}"
+      end
     end
   end
 
@@ -17,8 +21,11 @@ class CompaniesController < ApplicationController
     if user_signed_in?
 
       @company = Company.find params[:id]
-      @company.destroy
-      redirect_to "/"
+      @company.destroy        
+      if @internship.destroyed?
+          flash[:alert] = "Fiche supprimée"
+          redirect_to "/"
+      end
     end
   end
   
@@ -42,7 +49,7 @@ class CompaniesController < ApplicationController
       respond_to do |f|
         if @company.update company_params
           f.html { redirect_to(@company,
-                        :notice => 'Post was successfully updated.') }
+                        :alert => 'La fiche à été mise à jour') }
           f.xml  { head :ok }
         else
           f.html { render :action => "edit" }

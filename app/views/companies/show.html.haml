@@ -3,32 +3,45 @@
   .panel.panel-success
     .panel-heading
       %h6
-        = "Fiche entreprise : "+@company.name
-        %small
-          ="crée par" 
-          
+        = "Fiche entreprise : "        
+        %strong
+          =@company.name
     .panel-body         
-      %dl.dl-horizontal
-        %dt
-          Domaine d'activité
-        %dd
-          =@company.field
-        %dt
-          Site internet
-        %dd
-          =@company.web_site
-        %dt
-          Contact mail
-        %dd
-          =@company.mail
-        %dt
-          Adresse
-        %dd
-          =@company.adress
-        %dt
-          Contact téléphone
-        %dd
-          =@company.phone
+      .row
+        .col-md-3
+          .section
+            Domaine d'activité
+        .col-md-9
+          .comment
+            =@company.field
+      .row
+        .col-md-3
+          .section
+            Site internet
+        .col-md-9
+          .comment
+            =@company.web_site
+      .row
+        .col-md-3
+          .section
+            Contact mail
+        .col-md-9
+          .comment
+            =@company.mail
+      .row
+        .col-md-3
+          .section
+            Adresse
+        .col-md-9
+          .comment
+            =@company.adress
+      .row
+        .col-md-3
+          .section
+            Téléphone
+        .col-md-9
+          .comment
+            =@company.phone
     .panel-footer
       .show_internship
         - if user_signed_in?

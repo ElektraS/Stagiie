@@ -4,29 +4,47 @@
   .panel.panel-info
     .panel-heading
       %h6
-        = "Fiche stage chez : "+@internship.comp
-        %small
-          ="crée par"          
+        = "Fiche stage chez : "
+        %strong
+          =@internship.comp
+        .label.label-info
+          ="Par "+@creator.firts_name+" "+@creator.name
     .panel-body
-      %dl.dl-horizontal
-        %dt
-          Technologies
-        %dd
-          =@internship.field
-        %dt
-          Maitre de stage
-        %dd
-          =@internship.supervisor
-        %dt
-          Sujet et Commentaire
-        %dd
-          =@internship.commentary
-        %dt
-          Durée
-        %dd
-          =@internship.period
-        %dt
-          Stage
+      .row
+        .col-md-3
+          .section
+            Technologie
+        .col-md-9
+          .comment
+            =@internship.field
+      .row
+        .col-md-3
+          .section
+            Maitre de stage
+        .col-md-9
+          .comment
+            =@internship.supervisor
+      .row
+        .col-md-3
+          .section
+            Sujet et commentaire
+        .col-md-9
+          .comment
+            =@internship.commentary
+      .row
+        .col-md-3
+          .section
+            Durée
+        .col-md-9
+          .comment
+            =@internship.period
+      .row
+        .col-md-3
+          .section
+            Stage
+        .col-md-9
+          .comment
+            =@internship.schoolyear.to_s+"A"
     .panel-footer
       .show_internship
         - if current_user.id==@internship.user_id

@@ -18,7 +18,7 @@
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
           %ul.nav.navbar-nav
             %li
-              %a{href: "/internships/new"} ++ Stage
+              %a{href: "/internships/new", "data-placement"=>"bottom", "data-toggle"=>"tooltip", title: "Cliquer pour ajouter un témoignage de stage"} ++ Stage
             %li
               %a{href: "/companies/new"} ++ Fiche entreprise
             %li
@@ -38,7 +38,7 @@
                       %h6 Pourquoi ce site ?
                       %p Ce site fait l'objet d'un sujet de programmation web au cours du semestre 2 de formation. Il est développé en Ruby on Rails 4, s'appuie sur une base de donnée PostgreSQL 9.1 et utilise le template Twitter Bootstrap 3 modifié.
                       %h6 L'équipe
-                      %p La dream team chargée du développement est consituée de 2 étudiants
+                      %p La dream team chargée du développement est consituée de 2 étudiants :
                       %ul
                         %li
                           %p Aurélie Pallas

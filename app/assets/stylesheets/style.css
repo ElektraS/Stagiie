@@ -34,6 +34,10 @@ body
 	border-top-color:#bce8f1;
 }
 
+.label.label-info {
+	background-color: #2980b9;
+}
+
 .panel-success>.panel-heading {
 	color:#ecf0f1;
 	background-image: none; 
@@ -86,4 +90,13 @@ h3 small, h5 small {
 	color:#ecf0f1;
 	background-image: none; 
 	background-color: #2ecc71 !important;
+}
+
+.button.close {
+	color: #FFFFFF;
+}
+
+.section {
+	text-align: right;
+	font-weight: bold;
 }

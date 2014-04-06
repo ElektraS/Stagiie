@@ -41,7 +41,7 @@ class InternshipsController < ApplicationController
       respond_to do |f|
         if @internship.update internship_params
           f.html { redirect_to(@internship,
-                        :notice => 'Post was successfully updated.') }
+                        :alert => 'La fiche a été mise à jour') }
           f.xml  { head :ok }
         else
           f.html { render :action => "edit" }
@@ -59,6 +59,7 @@ class InternshipsController < ApplicationController
   def show
     if user_signed_in?
       @internship = Internship.find params[:id]
+      @creator=User.find(@internship.user_id)
     end
   end
 
