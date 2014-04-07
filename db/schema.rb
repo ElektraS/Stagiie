@@ -56,8 +56,11 @@ ActiveRecord::Schema.define(version: 20140328110258) do
     t.integer  "schoolyear"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "student_id"
     t.integer  "user_id"
   end
+
+  add_index "internships", ["student_id"], name: "index_internships_on_student_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
