@@ -10,7 +10,7 @@ class CompaniesController < ApplicationController
 	  	@company=Company.new company_params
       @company.user_id=current_user.id
 	  	@company.save
-      if @internship.persisted?
+      if @company.persisted?
         flash[:alert_success] = "Fiche enregistrée"
         redirect_to "/companies/#{@company.id}"
       end
@@ -22,7 +22,7 @@ class CompaniesController < ApplicationController
 
       @company = Company.find params[:id]
       @company.destroy        
-      if @internship.destroyed?
+      if @company.destroyed?
           flash[:alert] = "Fiche supprimée"
           redirect_to "/"
       end
