@@ -11,10 +11,20 @@
 					.panel-heading	
 						= "@ "+i.comp
 					.panel-body
-						%p 
-							= i.field
-						%p
-							= i.supervisor
+						.row
+							.col-md-5
+								.section
+									Technologie
+							.col-md-6
+								.comment 
+									= i.field
+						.row
+							.col-md-5
+								.section
+									Maitre de stage
+							.col-md-6
+								.comment
+									= i.supervisor
 					.panel-footer
 						=link_to 'Voir la fiche', {:controller => :internships, :action => :show, :id => i.id}	
 		.col-md-6
@@ -24,10 +34,20 @@
 					.panel-heading
 						= j.name
 					.panel-body
-						%p
-							=j.field
-						%p
-							=j.web_site
+						.row
+							.col-md-5
+								.section
+									Domaine
+							.col-md-6
+								.comment 
+									= j.field
+						.row
+							.col-md-5
+								.section
+									Site internet
+							.col-md-6
+								.comment
+									= j.web_site	
 					.panel-footer
 						=link_to 'En savoir plus', {:controller => :companies, :action => :show, :id => j.id}
 -else

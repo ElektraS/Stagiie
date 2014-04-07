@@ -1,11 +1,39 @@
 -if user_signed_in?
+  .panel.panel-warning
+    .panel-heading
+      %h6
+        ="Ensiien : "
+        %strong
+          =@creator.firts_name+" "+@creator.name
+    .panel-body
+      .row
+        .col-md-3
+          .section
+            Promotion
+        .col-md-9
+          .comment
+            =@creator.year
+        .col-md-3
+          .section
+            Adresse mail
+        .col-md-9
+          .comment
+            =@creator.email 
+        .col-md-3
+          .section
+            Téléphone
+        .col-md-9
+          .comment
+            =@creator.phone
+
+
   .panel.panel-info
     .panel-heading
       %h6
-        = "Fiche stage chez : "
+        = "Fiche stage chez :  "
         %strong
           =@internship.comp
-        .label.label-info
+        #info_creator.label.label-info
           ="Par "+@creator.firts_name+" "+@creator.name
     .panel-body
       .row
@@ -58,19 +86,18 @@
         - else
           %a
             =button_to 'Signaler', {:controller => :internships, :action => 'edit', :id => @internship.id}, class: "btn btn-danger", :method=> 'get' 
-
-  .panel.panel-info
-    .panel-heading
-      %h6
-        ="Ensiien : "
-        %strong
-          =@creator.firts_name+" "+@creator.name
-    .panel-body
-
-    .panel-footer
-
 -else 
   %p 
     ="Page non disponible hors connection !"
 
 
+:javascript
+$(document).ready(function() {
+
+  $("#info_creator").click(function(event) {
+    event.preventDefault();
+    $(".panel.panel-warning").toggle("fast"); 
+    console.log("ok");
+  });
+
+});
