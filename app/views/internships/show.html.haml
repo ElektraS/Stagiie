@@ -71,6 +71,14 @@
         .col-md-9
           .comment
             =@internship.schoolyear.to_s+"A"
+      .separateur 
+      .row
+        .col-md-3
+          .section
+            Crée le
+        .col-md-9
+          .comment
+            =@internship.created_at
     .panel-footer
       .show_internship
         - if current_user.id==@internship.user_id
