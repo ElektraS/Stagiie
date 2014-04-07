@@ -10,7 +10,10 @@ class InternshipsController < ApplicationController
 	  	@internship=Internship.new internship_params
       @internship.user_id=current_user.id
 	  	@internship.save
-      redirect_to "/internships/#{@internship.id}"
+      if @internship.persisted?
+        flash[:alert_success] = "Fiche enregistrée"
+        redirect_to "/internships/#{@internship.id}"
+      end
     end
   end
 
@@ -18,7 +21,10 @@ class InternshipsController < ApplicationController
     if user_signed_in?
       @internship = Internship.find params[:id]
       @internship.destroy
-      redirect_to "/"
+        if @internship.destroyed?
+          flash[:alert] = "Fiche supprimée"
+          redirect_to "/"
+        end
     end
   end
 
@@ -35,20 +41,25 @@ class InternshipsController < ApplicationController
       respond_to do |f|
         if @internship.update internship_params
           f.html { redirect_to(@internship,
-                        :notice => 'Post was successfully updated.') }
+                        :alert => 'La fiche a été mise à jour') }
           f.xml  { head :ok }
         else
           f.html { render :action => "edit" }
           f.xml  { render :xml => @internship.errors,
                         :status => :unprocessable_entity }
         end
+        if @internship.persisted?
+          flash[:alert] = "Fiche mise à jour"
+        end
       end
+
     end
   end
   
   def show
     if user_signed_in?
       @internship = Internship.find params[:id]
+      @creator=User.find(@internship.user_id)
     end
   end
 
@@ -60,5 +71,7 @@ class InternshipsController < ApplicationController
   def internship_params
   	params.require(:internship).permit(:comp, :field, :supervisor, :commentary, :period, :schoolyear)
   end
+
+  
 
 end

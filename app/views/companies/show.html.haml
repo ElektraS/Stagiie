@@ -1,40 +1,68 @@
 -if user_signed_in?
-  .container
-    .row
-      .col-md-9
-        .row
-          .col-md-1
-            =button_to "Editer", { :controller => :companies, :action => 'edit', :id => @company.id }, class: "btn btn-primary", :method => 'get'
-          .col-md-1
-            =button_to "Supprimer", { :controller => :companies, :action => 'destroy', :id => @company.id }, :method => :delete, class: "btn btn-danger"
 
-  %h3
-    = "Fiche entreprise : "+@company.name
+  .panel.panel-success
+    .panel-heading
+      %h6
+        = "Fiche entreprise : "        
+        %strong
+          =@company.name
+    .panel-body         
+      .row
+        .col-md-3
+          .section
+            Domaine d'activité
+        .col-md-9
+          .comment
+            =@company.field
+      .row
+        .col-md-3
+          .section
+            Site internet
+        .col-md-9
+          .comment
+            =@company.web_site
+      .row
+        .col-md-3
+          .section
+            Contact mail
+        .col-md-9
+          .comment
+            =@company.mail
+      .row
+        .col-md-3
+          .section
+            Adresse
+        .col-md-9
+          .comment
+            =@company.adress
+      .row
+        .col-md-3
+          .section
+            Téléphone
+        .col-md-9
+          .comment
+            =@company.phone
+    .panel-footer
+      .show_internship
+        - if user_signed_in?
+          .row
+            .col-md-6
+              .suppr
+                %a
+                  =button_to 'Editer', { :controller => :companies, :action => 'edit', :id => @company.id }, class: "btn btn-primary", :method => 'get'
+            .col-md-6
+              .editer
+                %a 
+                  =button_to "Supprimer", { :controller => :companies, :action => 'destroy', :id => @company.id }, :method => :delete, class: "btn btn-danger"
+        - else
+          %a
+            =button_to 'Signaler', { :controller => :companies, :action => 'edit', :id => @company.id }, class: "btn btn-primary", :method => 'get' 
+
+
+-else
+  %h4
+    ="Hello stranger"
     %small
-      ="crée par"
-  %dl.dl-horizontal
-    %dt
-      Domaine d'activité
-    %dd
-      =@company.field
-    %dt
-      Site internet
-    %dd
-      =@company.web_site
-    %dt
-      Contact mail
-    %dd
-      =@company.mail
-    %dt
-      Adresse
-    %dd
-      =@company.adress
-    %dt
-      Contact téléphone
-    %dd
-      =@company.phone
+      ="veuillez vous connecter ou vous inscrire pour accéder au site !"
 
-
--else 
-  %p Page non disponible hors connection 
 

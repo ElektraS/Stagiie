@@ -1,37 +1,37 @@
 -if user_signed_in?
-	%h2 
+	%h3
 		="Bienvenue"
 		%small
 			=@current_user.firts_name+" "+@current_user.name 
 	.row
 		.col-md-6
-			%h3 Les derniers témoignages
+			%h5 Les Stages
 			-@internships.reverse.each do |i|
 				.panel.panel-info
-					.panel-heading
-						%p
-							= "Chez "+ i.comp+" fait par"	
+					.panel-heading	
+						= "@ "+i.comp
 					.panel-body
 						%p 
 							= i.field
 						%p
 							= i.supervisor
 					.panel-footer
-						=link_to 'Voir la fiche', {:controller => :internships, :action => :show, :id => i.id}
+						=link_to 'Voir la fiche', {:controller => :internships, :action => :show, :id => i.id}	
 		.col-md-6
-			%h3 Les entreprises
+			%h5 Les entreprises
 			-@compagny.reverse.each do |j|
 				.panel.panel-success
 					.panel-heading
-						%p
-							= j.name
+						= j.name
 					.panel-body
 						%p
 							=j.field
+						%p
+							=j.web_site
 					.panel-footer
 						=link_to 'En savoir plus', {:controller => :companies, :action => :show, :id => j.id}
 -else
-	%h2
+	%h5
 		="Hello stranger"
 		%small
 			="veuillez vous connecter ou vous inscrire pour accéder au site !"

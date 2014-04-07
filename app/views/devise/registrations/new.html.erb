@@ -1,30 +1,25 @@
-<h2>Sign up</h2>
+<h4>S'inscrire</h4>
+<div class="sign_up">
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+<%= bootstrap_form_for(resource, :as => resource_name, :url => registration_path(resource_name),layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-8") do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="form-signin"><%= f.label :Nom %><br />
-  <%= f.text_field :name %></div>
+  <div class="form-signin"><%= f.text_field :name, label: "Nom" %></div>
 
-  <div><%= f.label :Prénom %><br />
-  <%= f.text_field :firts_name%></div>
+  <div><%= f.text_field :firts_name, label: "Prénom"%></div>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+  <div><%= f.email_field :email, label:"Email" %></div>
 
-  <div><%= f.label :Année %><i> Année de graduation, exemple '2016'</i><br />
-  <%= f.number_field :year %></div>
+  <div><%= f.number_field :year, label: "Année de promotion" %></div>
 
-  <div><%= f.label :Numéro_de_téléphone %><i> Exemple '0101010101' </i><br />
-  <%= f.number_field :phone %></div>
+  <div><%= f.number_field :phone, label: "Numéro de téléphone" %></div>
 
-  <div><%= f.label :password %><i>Écrire 8 caractères au minimum </i><br />
-  <%= f.password_field :password %></div>
+  <div><%= f.password_field :password , label: "Mot de passe"%></div>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+  <div><%= f.password_field :password_confirmation, label:"Confirmez" %></div>
 
-  <div><%= f.submit "Sign up" %></div>
+  <div><%= f.primary "S'inscrire" %></div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+</div>

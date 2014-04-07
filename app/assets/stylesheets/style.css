@@ -1,0 +1,102 @@
+body
+{
+	background-color: #F5F5F5;
+}
+
+.titre
+{
+	color: #FFFFFF;
+	background-color: #34495e;
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px #AAAAAA;
+	padding-top: 5px; 
+	padding-bottom: 10px;
+	padding-left: 20px;
+	margin-top: 5px;
+	margin-bottom: 25px;
+}
+
+.small {
+	color: #000000 !important;
+}
+
+.panel {
+	box-shadow: 0px 0px 5px #AAAAAA;
+}
+
+.panel-info>.panel-heading {
+	color:#ecf0f1;
+	background-image: none; 
+	background-color: #3498db !important;
+}
+
+.panel-info>.panel-body {
+	border-top-color:#bce8f1;
+}
+
+.label.label-info {
+	background-color: #2980b9;
+}
+
+.panel-success>.panel-heading {
+	color:#ecf0f1;
+	background-image: none; 
+	background-color: #2ecc71 !important;
+}
+
+.sign_in {
+	text-align: center;
+}
+
+.sign_up {
+	text-align: center;
+}
+
+.show_internship {
+	text-align: center;
+}
+
+.suppr {
+	text-align: right;
+}
+
+.editer {
+	text-align: left;
+}
+
+h3 small, h5 small {
+	color: #95a5a6;
+}
+
+.modal-header {
+	background-color: #34495e;
+	color: #FFFFFF;
+}
+
+.modal-footer {
+	background-color: #34495e;
+}
+
+.btenregistrer {
+	text-align: center;
+	margin-bottom: 25px;
+}
+
+.center {
+	text-align:  center;
+}
+
+.alert-success {
+	color:#ecf0f1;
+	background-image: none; 
+	background-color: #2ecc71 !important;
+}
+
+.button.close {
+	color: #FFFFFF;
+}
+
+.section {
+	text-align: right;
+	font-weight: bold;
+}

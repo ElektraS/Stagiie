@@ -1,6 +1,6 @@
 -if user_signed_in?
-  %h2 Édition
-  = form_for @internship do |f|
+  %h4 Éditer un stage
+  = bootstrap_form_for(@internship, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-8") do |f|
     - if @internship.errors.any?
       #error_explanation
         %h2= "#{pluralize(@internship.errors.count, "errors")} prohibited this annonce from being saved: "
@@ -8,35 +8,20 @@
           - @internship.errors.full_messages.each do |msg|
             %li = msg
     %div
-      = f.label :Companie
-      %br/
-      = f.text_field :comp
+      = f.text_field :comp, label: "Entreprise", placeholder: "Nom"
     %div
-      = f.label :Domaine
-      %br/
-      = f.text_field :field
+      = f.text_field :field, label: "Domaine", placeholder: "Techniques et/ou technologies utilisées pendant le stage"
     %div
-      = f.label :Maître_de_stage
-      %br/
-      = f.text_field :supervisor
+      = f.text_field :supervisor, label:"Maitre de Stage", placeholder: "Nom ou contact"
     %div
-      = f.label :Commentaire
-      %br/
-      = f.text_area :commentary
+      = f.text_area :commentary, label: "Sujet et commentaire", placeholder: "Détaillez ici le contennu du stage, son déroulement, ses conditions. N'oubliez pas d'ajouter une partie personnelle. Conseillez-vous à quelqu'un d'autre de faire le même stage ?"
     %div
-      = f.label :Période
-      %i Exemple : ' du 1er juillet 2013 au 29 août 2013'
-      %br/
-      = f.text_field :period
+      = f.text_field :period, label: "Durée du stage"
     %div
-      = f.label :Année
-      %br
-      %i Exemple : '1' s'il s'agit du stage de 1ère année.
-      %br/
-      = f.number_field :schoolyear
-      %i A
-    %div= f.submit "Update"
+      = f.number_field :schoolyear, label: "Semestre", placeholder: "Précisez, stage de 1A, 2A ou 3A"
+    %div
+      .btenregistrer
+        = f.primary "Enregistrer", layout: :inline
 
-    = link_to "Back", :back
 -else 
   %h2 Veuillez vous connecter
