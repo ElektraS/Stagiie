@@ -8,6 +8,8 @@ ProjetWeb::Application.routes.draw do
 
   get"/about/us" => "about#us"
 
+  get "/" => "internships#search"
+
   root 'internships#index'
 
   resources :internships
