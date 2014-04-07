@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20140407132745) do
     t.datetime "updated_at"
     t.integer  "student_id"
     t.integer  "user_id"
+    t.integer  "id_compagny"
   end
 
   add_index "internships", ["student_id"], name: "index_internships_on_student_id", using: :btree
