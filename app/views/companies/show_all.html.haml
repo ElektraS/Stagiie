@@ -1,0 +1,32 @@
+-if user_signed_in?
+	%h5 Tous les Stages
+	-@company.reverse.each do |j|
+		.row
+			.col-md-3	
+			.col-md-6
+				.panel.panel-success
+					.panel-heading
+						= j.name
+					.panel-body
+						.row
+							.col-md-5
+								.section
+									Domaine
+							.col-md-6
+								.comment 
+									= j.field
+						.row
+							.col-md-5
+								.section
+									Site internet
+							.col-md-6
+								.comment
+									= j.web_site	
+					.panel-footer
+						=link_to 'En savoir plus', {:controller => :companies, :action => :show, :id => j.id}
+	= will_paginate(@company, :renderer => WillPaginate::ActionView::LinkRenderer)
+-else
+	%h5
+		="Hello stranger"
+		%small
+			="veuillez vous connecter ou vous inscrire pour accéder au site !"

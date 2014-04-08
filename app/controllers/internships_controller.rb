@@ -63,6 +63,12 @@ class InternshipsController < ApplicationController
     end
   end
 
+  def show_all
+    if user_signed_in?
+      @internship = Internship.all.paginate(:page => params[:page], :per_page => 3)
+    end
+  end
+
   protected
   def internship_params
   	params.require(:internship).permit(:comp, :field, :supervisor, :commentary, :period, :schoolyear)

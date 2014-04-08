@@ -35,6 +35,11 @@ class CompaniesController < ApplicationController
     end
   end
 
+  def show_all
+    if user_signed_in?
+      @company = Company.all.paginate(:page => params[:page], :per_page => 3)
+    end
+  end
 
   def edit
     if user_signed_in?

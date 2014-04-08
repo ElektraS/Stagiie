@@ -119,6 +119,21 @@ h3 small, h5 small {
 	font-weight: bold;
 }
 
-#about {
+#about > a {
 	cursor: pointer;
 }
+
+#show_all_int {
+	background-color: #3498db;
+	cursor: pointer;
+}
+
+#show_all_comp {
+	background-color: #1abc9c;
+	cursor: pointer;
+}
+
+.label.label-default> a {
+	color:#FFFFFF !important;
+}
+

@@ -5,7 +5,11 @@
 			=@current_user.firts_name+" "+@current_user.name 
 	.row
 		.col-md-6
-			%h5 Les Stages
+			%h5 
+				="Stages récents"
+				#show_all_int.label.label-default
+					%a{href: "/internships/show_all"}
+						="Voir tous"
 			-@internships.reverse.each do |i|
 				.panel.panel-info
 					.panel-heading	
@@ -28,7 +32,11 @@
 					.panel-footer
 						=link_to 'Voir la fiche', {:controller => :internships, :action => :show, :id => i.id}	
 		.col-md-6
-			%h5 Les entreprises
+			%h5 
+				="Entreprises récentes"
+				#show_all_comp.label.label-default
+					%a{href: "/companies/show_all"}
+						="Voir toutes"			
 			-@compagny.reverse.each do |j|
 				.panel.panel-success
 					.panel-heading
