@@ -2,7 +2,7 @@
   .panel.panel-warning
     .panel-heading
       %h6
-        ="Ensiien : "
+        ="iien : "
         %strong
           =@creator.firts_name+" "+@creator.name
     .panel-body
@@ -79,6 +79,13 @@
         .col-md-9
           .comment
             =@internship.created_at
+      .row
+        .col-md-3
+          .section
+            Dernière maj
+        .col-md-9
+          .comment
+            =@internship.updated_at
     .panel-footer
       .show_internship
         - if current_user.id==@internship.user_id

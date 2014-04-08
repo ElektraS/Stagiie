@@ -1,6 +1,12 @@
 body
 {
-	background-color: #F5F5F5;
+	background-image: url("background.png");
+	background-attachment: fixed;
+}
+
+
+#body {
+
 }
 
 .titre
@@ -54,6 +60,7 @@ body
 	background-image: none; 
 	background-color: #1abc9c !important;
 }
+
 
 .sign_in {
 	text-align: center;
@@ -112,3 +119,6 @@ h3 small, h5 small {
 	font-weight: bold;
 }
 
+#about {
+	cursor: pointer;
+}

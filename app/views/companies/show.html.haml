@@ -42,6 +42,13 @@
         .col-md-9
           .comment
             =@company.phone
+      .row
+        .col-md-3
+          .section
+            Dernière maj
+        .col-md-9
+          .comment
+            =@company.updated_at            
     .panel-footer
       .show_internship
         - if user_signed_in?
