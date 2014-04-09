@@ -1,7 +1,7 @@
 class CompaniesController < ApplicationController
   def new
   	if user_signed_in?
-  		@company=Company.new
+  		@company=Company.new(:name=>params[:name])
   	end
   end
 

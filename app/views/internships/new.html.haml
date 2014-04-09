@@ -2,8 +2,11 @@
 	%h4 Ajouter un  stage
  
 	= bootstrap_form_for(@internship, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-8") do |f|
-		%div
-			= f.text_field :comp, label: "Entreprise", placeholder: "Nom"
+
+		#select
+			=f.select :comp, options_for_select(@liste), label: "Entreprise", placeholder: "Choisir dans la liste ou créer une nouvelle fiche"	
+		#new_comp
+			=f.text_field :comp, label: "Nom de la nouvelle entreprise", placeholder: "Entrez le nom de la nouvelle entreprise"	
 		%div
 			= f.text_field :field, label: "Domaine", placeholder: "Techniques et/ou technologies utilisées pendant le stage"
 		%div
@@ -17,6 +20,8 @@
 		%div
 			.btenregistrer
 				= f.primary "Enregistrer", layout: :inline
+
+
 
 -else
 	%h5
@@ -57,3 +62,13 @@
 		.col-md-6
 			#btnhc_inscription
 				=button_to "S'inscrire", new_user_registration_path, class: "btn btn-inverse btn-lg", :method => "get" 
+
+:javascript
+$(document).ready(function() {
+
+	$("#select").change(function(event){
+		event.preventDefault();
+		$("#new_comp").toggle("fast");
+	}
+
+});

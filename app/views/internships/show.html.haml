@@ -1,13 +1,6 @@
 -if user_signed_in?
-  -if current_user.id==@creator.id
-    .panel.panel-warning
-      .panel-heading
-        %h6
-          ="Narcissique hein ?"
-          %strong
-            ="C'est toi qui l'a écrit qu'on te dit :-)"
 
-  -else
+  #user_cache
     .panel.panel-warning
       .panel-heading
         %h6
@@ -34,14 +27,102 @@
           .col-md-9
             .comment
               =@creator.phone
+  -if Company.exists?(@internship.id_compagny)
+    #comp_cache        
+      .panel.panel-success  
+        .panel-heading
+          %h6
+            = "Fiche entreprise : "        
+            %strong
+              =@company.name
+        .panel-body         
+          .row
+            .col-md-3
+              .section
+                Domaine d'activité
+            .col-md-9
+              .comment
+                =@company.field
+          .row
+            .col-md-3
+              .section
+                Site internet
+            .col-md-9
+              %a.comment{href:"#{@company.web_site}"}
+                =@company.web_site
+          .row
+            .col-md-3
+              .section
+                Contact mail
+            .col-md-9
+              .comment
+                =mail_to @company.mail
+          .row
+            .col-md-3
+              .section
+                Adresse
+            .col-md-9
+              .comment
+                =@company.adress
+          .row
+            .col-md-3
+              .section
+                Téléphone
+            .col-md-9
+              .comment
+                =@company.phone
+          .row
+            .col-md-3
+              .section.color_gris
+                Dernière maj
+            .col-md-9
+              .comment.color_gris
+                =@company.updated_at.to_time.strftime('%B %e at %l:%M %p')            
+        .panel-footer
+          .show_internship
+            - if user_signed_in?
+              .row
+                .col-md-6
+                  .suppr
+                    %a
+                      =button_to 'Editer', { :controller => :companies, :action => 'edit', :id => @company.id }, class: "btn btn-primary", :method => 'get'
+                .col-md-6
+                  .editer
+                    %a 
+                      =button_to "Supprimer", { :controller => :companies, :action => 'destroy', :id => @company.id }, :method => :delete, class: "btn btn-danger"      
+  -else
+    #comp_cache
+      .panel.panel-success  
+        .panel-heading
+          %h6
+            = "La fiche de l'entreprise " 
+            %strong
+              =@internship.comp
+            =" n'existe pas encore"        
+        .panel-body         
+          .row
+            .col-md-6
+              .section
+                Choisir une entreprise dans la liste :
+          .row
+            .col-md-6
+              .section
+                Elle n'est pas présente ? Ajoutez-la !
+            .col-md-6
+              .comment
+                %a
+                  =button_to 'Créer la page', {:controller => :companies, :action => 'new', :name => @internship.comp}, :method => 'get', class: "btn btn-primary"
 
+
+      
 
   .panel.panel-info
     .panel-heading
       %h6
         = "Fiche stage chez :  "
         %strong
-          =@internship.comp
+          #info_comp.label.label-info
+            =@internship.comp
         #info_creator.label.label-info
           -if current_user.id==@creator.id
             ="Par YOU!"
@@ -159,9 +240,11 @@
 $(document).ready(function() {
 
   $("#info_creator").click(function(event) {
-    event.preventDefault();
-    $(".panel.panel-warning").toggle("fast"); 
-    console.log("ok");
+    $("#user_cache").toggle("fast"); 
+  });
+
+  $("#info_comp").click(function(event) {
+    $("#comp_cache").toggle("fast"); 
   });
 
 });
