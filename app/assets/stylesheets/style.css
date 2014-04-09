@@ -78,8 +78,21 @@ body
 	text-align: right;
 }
 
+.date_ds_panelfooter {
+	text-align: right;
+	color: #7f8c8d;
+}
+
+.indication_ds_panelfooter {
+	text-align: left;
+}
+
 .editer {
 	text-align: left;
+}
+
+.color_gris {
+	color: #7f8c8d;
 }
 
 h3 small, h5 small {

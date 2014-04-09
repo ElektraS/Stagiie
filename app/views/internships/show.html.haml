@@ -18,7 +18,7 @@
             Adresse mail
         .col-md-9
           .comment
-            =@creator.email 
+            =mail_to @creator.email
         .col-md-3
           .section
             Téléphone
@@ -74,17 +74,17 @@
       .separateur 
       .row
         .col-md-3
-          .section
+          .section.color_gris
             Crée le
         .col-md-9
-          .comment
+          .comment.color_gris
             =@internship.created_at.to_time.strftime('%B %e at %l:%M %p')            
       .row
         .col-md-3
-          .section
+          .section.color_gris
             Dernière maj
         .col-md-9
-          .comment
+          .comment.color_gris
             =@internship.updated_at.to_time.strftime('%B %e at %l:%M %p')            
     .panel-footer
       .show_internship

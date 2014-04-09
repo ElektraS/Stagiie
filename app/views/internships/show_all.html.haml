@@ -26,8 +26,22 @@
 							.col-md-6
 								.comment
 									= i.supervisor
+						.row
+							.col-md-6
+								.section
+									Sujet et commentaire
+							.col-md-6
+								.comment
+									= truncate(i.commentary, :length => 50, :separator => ' ')									
 					.panel-footer
-						=link_to 'Voir la fiche', {:controller => :internships, :action => :show, :id => i.id}		
+						.row
+							.col-md-6.indication_ds_panelfooter
+								=link_to 'Voir la fiche', {:controller => :internships, :action => :show, :id => i.id}	
+								-if current_user.id==i.user_id
+									|
+									=link_to 'Editer', {controller => :internships, :action => :edit, :id => i.id}
+							.col-md-6.date_ds_panelfooter
+								="Maj le : "+i.updated_at.to_time.strftime('%B %e at %l:%M %p').to_s	
 	.center
 		= will_paginate(@internship, :renderer => WillPaginate::ActionView::LinkRenderer)
 -else

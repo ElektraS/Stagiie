@@ -27,7 +27,7 @@
             Contact mail
         .col-md-9
           .comment
-            =@company.mail
+            =mail_to @company.mail
       .row
         .col-md-3
           .section
@@ -44,10 +44,10 @@
             =@company.phone
       .row
         .col-md-3
-          .section
+          .section.color_gris
             Dernière maj
         .col-md-9
-          .comment
+          .comment.color_gris
             =@company.updated_at.to_time.strftime('%B %e at %l:%M %p')            
     .panel-footer
       .show_internship
