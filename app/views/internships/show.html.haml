@@ -1,30 +1,32 @@
 -if user_signed_in?
-  .panel.panel-warning
-    .panel-heading
-      %h6
-        ="iien : "
-        %strong
-          =@creator.firts_name+" "+@creator.name
-    .panel-body
-      .row
-        .col-md-3
-          .section
-            Promotion
-        .col-md-9
-          .comment
-            =@creator.year
-        .col-md-3
-          .section
-            Adresse mail
-        .col-md-9
-          .comment
-            =mail_to @creator.email
-        .col-md-3
-          .section
-            Téléphone
-        .col-md-9
-          .comment
-            =@creator.phone
+  -if current_user.id==@creator.id
+  -else
+    .panel.panel-warning
+      .panel-heading
+        %h6
+          ="iien : "
+          %strong
+            =@creator.firts_name+" "+@creator.name
+      .panel-body
+        .row
+          .col-md-3
+            .section
+              Promotion
+          .col-md-9
+            .comment
+              =@creator.year
+          .col-md-3
+            .section
+              Adresse mail
+          .col-md-9
+            .comment
+              =mail_to @creator.email
+          .col-md-3
+            .section
+              Téléphone
+          .col-md-9
+            .comment
+              =@creator.phone
 
 
   .panel.panel-info
@@ -34,7 +36,10 @@
         %strong
           =@internship.comp
         #info_creator.label.label-info
-          ="Par "+@creator.firts_name+" "+@creator.name
+          -if current_user.id==@creator.id
+            ="Par YOU!"
+          -else
+            ="Par "+@creator.firts_name+" "+@creator.name
     .panel-body
       .row
         .col-md-3
@@ -102,8 +107,28 @@
           %a
             =button_to 'Signaler', {:controller => :internships, :action => 'edit', :id => @internship.id}, class: "btn btn-danger", :method=> 'get' 
 -else 
-  %p 
-    ="Page non disponible hors connection !"
+  %h5
+    ="Hello stranger"
+    %small
+      ="veuillez vous connecter ou vous inscrire pour accéder au site !"
+  #banierehc.container
+    .row
+      .col-md-3
+        .center
+          %img{alt: "Calendar", src: "/images/icons/svg/calendar.svg"}
+          %h6 Vous cherchez un stage et vous manquez d'inspiration ?
+      .col-md-3
+        .center
+          %img{src: "/images/icons/svg/compas.svg"}
+          %h6 Vous ne connaissez pas beaucoup d'entreprise de la région ?
+      .col-md-3
+        .center
+          %img{src: "/images/icons/svg/pencils.svg"}
+          %h6 Vous êtes un anciens qui souhaite contribuer au réseau des iiens ?
+      .col-md-3
+        .center
+          %img{src: "/images/icons/svg/retina.svg"}
+          %h6 Inscrivez-vous, découvrez et partagez !
 
 
 :javascript
