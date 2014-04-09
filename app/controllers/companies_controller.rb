@@ -37,7 +37,7 @@ class CompaniesController < ApplicationController
 
   def show_all
     if user_signed_in?
-      @company = Company.all.paginate(:page => params[:page], :per_page => 3)
+      @company = Company.all.paginate(:page => params[:page], :per_page => 5)
     end
   end
 

@@ -4,10 +4,10 @@
 		#show_all_int.label.label-default
 			%a{href:"/internships/new"}
 				="+"
-	-@internship.reverse.each do |i|
+	-@internship.each do |i|
 		.row
-			.col-md-3
-			.col-md-6
+			.col-md-2
+			.col-md-8
 				.panel.panel-info
 					.panel-heading	
 						= "@ "+i.comp

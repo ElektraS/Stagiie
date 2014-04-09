@@ -65,7 +65,7 @@ class InternshipsController < ApplicationController
 
   def show_all
     if user_signed_in?
-      @internship = Internship.all.paginate(:page => params[:page], :per_page => 3)
+      @internship = Internship.all.paginate(:page => params[:page], :per_page => 5)
     end
   end
 

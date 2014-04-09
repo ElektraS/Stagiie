@@ -19,7 +19,7 @@
           .section
             Site internet
         .col-md-9
-          .comment
+          %a.comment{href:"#{@company.web_site}"}
             =@company.web_site
       .row
         .col-md-3
@@ -48,7 +48,7 @@
             Dernière maj
         .col-md-9
           .comment
-            =@company.updated_at            
+            =@company.updated_at.to_time.strftime('%B %e at %l:%M %p')            
     .panel-footer
       .show_internship
         - if user_signed_in?

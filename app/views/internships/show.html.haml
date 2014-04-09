@@ -78,14 +78,14 @@
             Crée le
         .col-md-9
           .comment
-            =@internship.created_at
+            =@internship.created_at.to_time.strftime('%B %e at %l:%M %p')            
       .row
         .col-md-3
           .section
             Dernière maj
         .col-md-9
           .comment
-            =@internship.updated_at
+            =@internship.updated_at.to_time.strftime('%B %e at %l:%M %p')            
     .panel-footer
       .show_internship
         - if current_user.id==@internship.user_id

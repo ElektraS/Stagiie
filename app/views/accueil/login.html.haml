@@ -12,7 +12,7 @@
 						="+"
 				#show_all_int.label.label-default
 					%a{href: "/internships/show_all"}
-						="Voir tous"
+						="Voir tous"					
 			-@internships.reverse.each do |i|
 				.panel.panel-info
 					.panel-heading	
@@ -60,7 +60,7 @@
 								.section
 									Site internet
 							.col-md-6
-								.comment
+								%a.comment{href:"#{j.web_site}"}
 									= j.web_site	
 					.panel-footer
 						=link_to 'En savoir plus', {:controller => :companies, :action => :show, :id => j.id}
