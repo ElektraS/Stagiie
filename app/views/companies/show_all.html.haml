@@ -1,5 +1,9 @@
 -if user_signed_in?
-	%h5 Tous les Stages
+	%h5 
+		="Toutes les Entreprises"
+		#show_all_comp.label.label-default
+			%a{href:"/companies/new"}
+				="+"
 	-@company.reverse.each do |j|
 		.row
 			.col-md-3	
@@ -24,7 +28,8 @@
 									= j.web_site	
 					.panel-footer
 						=link_to 'En savoir plus', {:controller => :companies, :action => :show, :id => j.id}
-	= will_paginate(@company, :renderer => WillPaginate::ActionView::LinkRenderer)
+	.center
+		= will_paginate(@company, :renderer => WillPaginate::ActionView::LinkRenderer)
 -else
 	%h5
 		="Hello stranger"

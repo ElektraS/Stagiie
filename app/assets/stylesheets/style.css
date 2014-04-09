@@ -124,16 +124,29 @@ h3 small, h5 small {
 }
 
 #show_all_int {
-	background-color: #3498db;
+	background-color: #2980b9;
 	cursor: pointer;
 }
 
+#show_all_int:hover {
+	background-color: #3498db;
+	cursor:pointer;
+}
+
 #show_all_comp {
-	background-color: #1abc9c;
+	background-color: #16a085;
 	cursor: pointer;
+}
+
+#show_all_comp:hover {
+	background-color: #1abc9c;
+	cursor:pointer;
 }
 
 .label.label-default> a {
 	color:#FFFFFF !important;
 }
 
+.dropdown-menu {
+	background-color: #000000 !important;
+}

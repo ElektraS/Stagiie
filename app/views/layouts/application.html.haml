@@ -17,11 +17,22 @@
         / Collect the nav links, forms, and other content for toggling
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
           %ul.nav.navbar-nav
-            %li
-              #ajoutstage
-              %a{href: "/internships/new", "data-placement"=>"bottom", "data-toggle"=>"tooltip", title: "Cliquer pour ajouter un témoignage de stage"} ++ Stage
-            %li
-              %a{href: "/companies/new"} ++ Fiche entreprise
+            
+            %li.dropdown
+              %a.dropdown-toggle{href:"", "data-toggle"=>"dropdown"} Stage
+              %ul.dropdown-menu
+                %li
+                  %a{href:"/internships/new"} ++Stage
+                %li
+                  %a{href:"/internships/show_all"} Voir tous
+
+            %li.dropdown
+              %a.dropdown-toggle{href:"", "data-toggle"=>"dropdown"} Entreprise
+              %ul.dropdown-menu
+                %li
+                  %a{href:"/companies/new"} ++Entreprise
+                %li
+                  %a{href:"/companies/show_all"} Voir toutes
             %li
               %a{href: "", "data-target" => ".bs-example-modal-lg", "data-toggle" => "modal"} A propos
               .modal.fade.bs-example-modal-lg{"aria-hidden" => "true", "aria-labelledby" => "myLargeModalLabel", role: "dialog", tabindex: "-1"}
@@ -47,6 +58,7 @@
                           %p Olivier Staub
                     .modal-footer
                       %button.btn.btn-danger{"data-dismiss" => "modal", type: "button"} Fermer
+
           %ul.nav.navbar-nav.navbar-right
             - if user_signed_in?
               %li

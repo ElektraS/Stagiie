@@ -1,5 +1,9 @@
 -if user_signed_in?
-	%h5 Tous les Stages
+	%h5 
+		="Tous les Stages"
+		#show_all_int.label.label-default
+			%a{href:"/internships/new"}
+				="+"
 	-@internship.reverse.each do |i|
 		.row
 			.col-md-3
@@ -24,7 +28,8 @@
 									= i.supervisor
 					.panel-footer
 						=link_to 'Voir la fiche', {:controller => :internships, :action => :show, :id => i.id}		
-	= will_paginate(@internship, :renderer => WillPaginate::ActionView::LinkRenderer)
+	.center
+		= will_paginate(@internship, :renderer => WillPaginate::ActionView::LinkRenderer)
 -else
 	%h5
 		="Hello stranger"
