@@ -12,10 +12,10 @@
 						="+"
 				#show_all_int.label.label-default
 					%a{href: "/internships/show_all"}
-						="Voir tous"					
+						="Voir tous"          
 			-@internships.reverse.each do |i|
 				.panel.panel-info
-					.panel-heading	
+					.panel-heading  
 						= "@ "+i.comp
 					.panel-body
 						.row
@@ -42,7 +42,7 @@
 					.panel-footer
 						.row
 							.col-md-6.indication_ds_panelfooter
-								=link_to 'Voir la fiche', {:controller => :internships, :action => :show, :id => i.id}	
+								=link_to 'Voir la fiche', {:controller => :internships, :action => :show, :id => i.id}  
 								-if current_user.id==i.user_id
 									|
 									=link_to 'Editer' ,{:controller => :internships, :action => :edit, :id => i.id}
@@ -56,7 +56,7 @@
 						="+"
 				#show_all_comp.label.label-default
 					%a{href: "/companies/show_all"}
-						="Voir toutes"			
+						="Voir toutes"      
 			-@compagny.reverse.each do |j|
 				.panel.panel-success
 					.panel-heading
@@ -75,16 +75,14 @@
 									Site internet
 							.col-md-6
 								%a.comment{href:"#{j.web_site}"}
-									= j.web_site	
+									= j.web_site  
 					.panel-footer
 						.row
 							.col-md-6.indication_ds_panelfooter
 								=link_to 'En savoir plus', {:controller => :companies, :action => :show, :id => j.id}
 							.col-md-6.date_ds_panelfooter
 								="Maj le : "+j.updated_at.to_time.strftime('%B %e at %l:%M %p').to_s
-
 -else
-
 	%h5
 		="Hello stranger"
 		%small
@@ -106,7 +104,7 @@
 		.row
 			.col-md-3
 				.center
-					%h6 Vous cherchez un stage et vous manquez d'inspiration ?				
+					%h6 Vous cherchez un stage et vous manquez d'inspiration ?        
 			.col-md-3
 				.center
 					%h6 Vous ne connaissez pas beaucoup d'entreprises de la région ?
@@ -114,7 +112,7 @@
 				.center
 					%h6 Vous êtes un ancien qui souhaite contribuer au réseau des iiens ?
 			.col-md-3
-				.center													
+				.center                         
 					%h6 Inscrivez-vous, découvrez et partagez !
 	.row
 		.col-md-6
