@@ -1,6 +1,6 @@
 -if user_signed_in?
 	-if current_user.id==@internship.user_id
-		%h4 Éditer un stage
+		%h5 Éditer un stage
 		= bootstrap_form_for(@internship, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-8") do |f|
 			- if @internship.errors.any?
 				#error_explanation
@@ -9,7 +9,7 @@
 						- @internship.errors.full_messages.each do |msg|
 							%li = msg
 
-							
+
 			#select
 				=f.select :comp, options_for_select(@liste), label: "Entreprise", placeholder: "Choisir dans la liste ou créer une nouvelle fiche"
 			.row

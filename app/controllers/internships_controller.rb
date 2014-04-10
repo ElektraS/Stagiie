@@ -48,6 +48,7 @@ class InternshipsController < ApplicationController
   def update
     if user_signed_in?
       @internship = Internship.find(params[:id])
+      
       @internship.comp=Company.find(internship_params[:comp]).name
       @internship.id_compagny=internship_params[:comp]
 
