@@ -1,6 +1,71 @@
-- @company.each do |c|
-  %p= c.name
+%h5
+	="Résultats de la recherche :"
+%h6
+	="Les Entreprises"
 
-- @internship.each do |i|
-  %p= i.field
+-@company.reverse.each do |j|
+	.row
+		.col-md-2
+		.col-md-8
+			.panel.panel-success
+				.panel-heading
+					= j.name
+				.panel-body
+					.row
+						.col-md-6
+							.section
+								Domaine
+						.col-md-6
+							.comment 
+								= j.field
+					.row
+						.col-md-6
+							.section
+								Site internet
+						.col-md-6
+							.comment
+								= j.web_site  
+				.panel-footer
+					=link_to 'En savoir plus', {:controller => :companies, :action => :show, :id => j.id}
+%h6
+	="Les Stages"
+
+-@internship.each do |i|
+	.row
+		.col-md-2
+		.col-md-8
+			.panel.panel-info
+				.panel-heading  
+					= "@ "+i.comp
+				.panel-body
+					.row
+						.col-md-6
+							.section
+								Technologie
+						.col-md-6
+							.comment 
+								= i.field
+					.row
+						.col-md-6
+							.section
+								Maitre de stage
+						.col-md-6
+							.comment
+								= i.supervisor
+					.row
+						.col-md-6
+							.section
+								Sujet et commentaire
+						.col-md-6
+							.comment
+								= truncate(i.commentary, :length => 50, :separator => ' ')                                 
+				.panel-footer
+					.row
+						.col-md-6.indication_ds_panelfooter
+							=link_to 'Voir la fiche', {:controller => :internships, :action => :show, :id => i.id}  
+							-if current_user.id==i.user_id
+								|
+								=link_to 'Editer', {controller => :internships, :action => :edit, :id => i.id}
+						.col-md-6.date_ds_panelfooter
+							="Maj le : "+i.updated_at.to_time.strftime('%B %e at %l:%M %p').to_s  
 

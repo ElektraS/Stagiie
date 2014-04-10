@@ -266,3 +266,9 @@ h3 small, h5 small {
 #voir_accepte:hover {
 	background-color: #27ae60;
 }
+
+.form-control {
+	background-image: none !important;
+	background-color: #f5f5f5 !important;
+
+}
