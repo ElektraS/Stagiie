@@ -1,25 +1,74 @@
 -if user_signed_in?
-  %h4 Ajouter un  stage
+	%h4 Ajouter un  stage
  
-  = bootstrap_form_for(@internship, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-8") do |f|
-    %div
-      = f.text_field :comp, label: "Entreprise", placeholder: "Nom"
-    %div
-      = f.text_field :field, label: "Domaine", placeholder: "Techniques et/ou technologies utilisées pendant le stage"
-    %div
-      = f.text_field :supervisor, label:"Maitre de Stage", placeholder: "Nom ou contact"
-    %div
-      = f.text_area :commentary, label: "Sujet et commentaire", placeholder: "Détaillez ici le contennu du stage, son déroulement, ses conditions. N'oubliez pas d'ajouter une partie personnelle. Conseillez-vous à quelqu'un d'autre de faire le même stage ?"
-    %div
-      = f.text_field :period, label: "Durée du stage"
-    %div
-      = f.number_field :schoolyear, label: "Semestre", placeholder: "Précisez, stage de 1A, 2A ou 3A"
-    %div
-      .btenregistrer
-        = f.primary "Enregistrer", layout: :inline
--else
-  %h5
-    ="Hello stranger"
-    %small
-      ="veuillez vous connecter ou vous inscrire pour accéder au site !"
+	= bootstrap_form_for(@internship, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-8") do |f|
 
+		#select
+			=f.select :comp, options_for_select(@liste), label: "Entreprise", placeholder: "Choisir dans la liste ou créer une nouvelle fiche"	
+		#new_comp
+			=f.text_field :comp, label: "Nom de la nouvelle entreprise", placeholder: "Entrez le nom de la nouvelle entreprise"	
+		%div
+			= f.text_field :field, label: "Domaine", placeholder: "Techniques et/ou technologies utilisées pendant le stage"
+		%div
+			= f.text_field :supervisor, label:"Maitre de Stage", placeholder: "Nom ou contact"
+		%div
+			= f.text_area :commentary, label: "Sujet et commentaire", placeholder: "Détaillez ici le contennu du stage, son déroulement, ses conditions. N'oubliez pas d'ajouter une partie personnelle. Conseillez-vous à quelqu'un d'autre de faire le même stage ?"
+		%div
+			= f.text_field :period, label: "Durée du stage"
+		%div
+			= f.number_field :schoolyear, label: "Semestre", placeholder: "Précisez, stage de 1A, 2A ou 3A"
+		%div
+			.btenregistrer
+				= f.primary "Enregistrer", layout: :inline
+
+
+
+-else
+	%h5
+		="Hello stranger"
+		%small
+			="veuillez vous connecter ou vous inscrire pour accéder au site !"
+	#banierehc
+		.row
+			.col-md-3
+				.center
+					%img{alt: "Calendar", src: "/images/icons/svg/calendar.svg"}
+			.col-md-3
+				.center
+					%img{src: "/images/icons/svg/compas.svg"}
+			.col-md-3
+				.center
+					%img{src: "/images/icons/svg/pencils.svg"}
+			.col-md-3
+				.center
+					%img{src: "/images/icons/svg/retina.svg"}
+		.row
+			.col-md-3
+				.center
+					%h6 Vous cherchez un stage et vous manquez d'inspiration ?        
+			.col-md-3
+				.center
+					%h6 Vous ne connaissez pas beaucoup d'entreprises de la région ?
+			.col-md-3
+				.center
+					%h6 Vous êtes un ancien qui souhaite contribuer au réseau des iiens ?
+			.col-md-3
+				.center                         
+					%h6 Inscrivez-vous, découvrez et partagez !
+	.row
+		.col-md-6
+			#btnhc_connection
+				=button_to "Se connecter", new_user_session_path, class: "btn btn-primary btn-lg", :method => "get"
+		.col-md-6
+			#btnhc_inscription
+				=button_to "S'inscrire", new_user_registration_path, class: "btn btn-inverse btn-lg", :method => "get" 
+
+:javascript
+$(document).ready(function() {
+
+	$("#select").change(function(event){
+		event.preventDefault();
+		$("#new_comp").toggle("fast");
+	}
+
+});

@@ -6,10 +6,6 @@
 
   <div><%= f.password_field :password, label: "Mot de passe"%></div>
 
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %></div>
-  <% end -%>
-
   <div><%= f.primary "Se connecter" %></div>
 <% end %>
 

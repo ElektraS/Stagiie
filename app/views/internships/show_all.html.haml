@@ -1,0 +1,86 @@
+-if user_signed_in?
+	%h5 
+		="Tous les Stages"
+		#show_all_int.label.label-default
+			%a{href:"/internships/new"}
+				="+"
+	-@internship.each do |i|
+		.row
+			.col-md-2
+			.col-md-8
+				.panel.panel-info
+					.panel-heading  
+						= "@ "+i.comp
+					.panel-body
+						.row
+							.col-md-6
+								.section
+									Technologie
+							.col-md-6
+								.comment 
+									= i.field
+						.row
+							.col-md-6
+								.section
+									Maitre de stage
+							.col-md-6
+								.comment
+									= i.supervisor
+						.row
+							.col-md-6
+								.section
+									Sujet et commentaire
+							.col-md-6
+								.comment
+									= truncate(i.commentary, :length => 50, :separator => ' ')                                 
+					.panel-footer
+						.row
+							.col-md-6.indication_ds_panelfooter
+								=link_to 'Voir la fiche', {:controller => :internships, :action => :show, :id => i.id}  
+								-if current_user.id==i.user_id
+									|
+									=link_to 'Editer', {controller => :internships, :action => :edit, :id => i.id}
+							.col-md-6.date_ds_panelfooter
+								="Maj le : "+i.updated_at.to_time.strftime('%B %e at %l:%M %p').to_s    
+	.center
+		= will_paginate(@internship, :renderer => WillPaginate::ActionView::LinkRenderer)
+
+-else
+	%h5
+		="Hello stranger"
+		%small
+			="veuillez vous connecter ou vous inscrire pour accéder au site !"
+	#banierehc
+		.row
+			.col-md-3
+				.center
+					%img{alt: "Calendar", src: "/images/icons/svg/calendar.svg"}
+			.col-md-3
+				.center
+					%img{src: "/images/icons/svg/compas.svg"}
+			.col-md-3
+				.center
+					%img{src: "/images/icons/svg/pencils.svg"}
+			.col-md-3
+				.center
+					%img{src: "/images/icons/svg/retina.svg"}
+		.row
+			.col-md-3
+				.center
+					%h6 Vous cherchez un stage et vous manquez d'inspiration ?        
+			.col-md-3
+				.center
+					%h6 Vous ne connaissez pas beaucoup d'entreprises de la région ?
+			.col-md-3
+				.center
+					%h6 Vous êtes un ancien qui souhaite contribuer au réseau des iiens ?
+			.col-md-3
+				.center                         
+					%h6 Inscrivez-vous, découvrez et partagez !
+	.row
+		.col-md-6
+			#btnhc_connection
+				=button_to "Se connecter", new_user_session_path, class: "btn btn-primary btn-lg", :method => "get"
+		.col-md-6
+			#btnhc_inscription
+				=button_to "S'inscrire", new_user_registration_path, class: "btn btn-inverse btn-lg", :method => "get" 

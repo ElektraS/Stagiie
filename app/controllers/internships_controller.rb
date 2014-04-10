@@ -1,6 +1,9 @@
 class InternshipsController < ApplicationController
   def new
   	if user_signed_in?
+      @liste=Company.all.map {|c| [c.name, c.id]}
+      @liste[@liste.length]=["Autre"]
+      @liste=@liste.reverse        
   		@internship=Internship.new
   	end
   end
@@ -9,10 +12,19 @@ class InternshipsController < ApplicationController
   	if user_signed_in?
 	  	@internship=Internship.new internship_params
       @internship.user_id=current_user.id
-	  	@internship.save
-      if @internship.persisted?
-        flash[:alert_success] = "Fiche enregistrée"
-        redirect_to "/internships/#{@internship.id}"
+    
+      if internship_params[:comp]=="Autre"
+        redirect_to "/"
+      else
+        @internship.comp=Company.find(internship_params[:comp]).name
+        @internship.id_compagny=internship_params[:comp]
+        @internship.save
+
+        if @internship.persisted?
+          flash[:alert_success] = "Fiche enregistrée"
+          redirect_to "/internships/#{@internship.id}"
+        end
+
       end
     end
   end
@@ -60,6 +72,15 @@ class InternshipsController < ApplicationController
     if user_signed_in?
       @internship = Internship.find params[:id]
       @creator=User.find(@internship.user_id)
+      if Company.exists?(@internship.id_compagny)
+        @company=Company.find(@internship.id_compagny)
+      end
+    end
+  end
+
+  def show_all
+    if user_signed_in?
+      @internship = Internship.all.paginate(:page => params[:page], :per_page => 5)
     end
   end
 

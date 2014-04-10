@@ -3408,7 +3408,7 @@ fieldset[disabled] .twitter-typeahead .tt-hint {
   transition: 0.25s;
 }
 .dropdown-inverse {
-  background-color: #34495e;
+  background-color: #000000;
   color: #cccccc;
   padding: 4px 0 6px;
 }

@@ -1,40 +1,133 @@
 -if user_signed_in?
-  .panel.panel-warning
-    .panel-heading
-      %h6
-        ="Ensiien : "
-        %strong
-          =@creator.firts_name+" "+@creator.name
-    .panel-body
-      .row
-        .col-md-3
-          .section
-            Promotion
-        .col-md-9
-          .comment
-            =@creator.year
-        .col-md-3
-          .section
-            Adresse mail
-        .col-md-9
-          .comment
-            =@creator.email 
-        .col-md-3
-          .section
-            Téléphone
-        .col-md-9
-          .comment
-            =@creator.phone
 
+  #user_cache
+    .panel.panel-warning
+      .panel-heading
+        %h6
+          ="iien : "
+          %strong
+            =@creator.firts_name+" "+@creator.name
+      .panel-body
+        .row
+          .col-md-3
+            .section
+              Promotion
+          .col-md-9
+            .comment
+              =@creator.year
+          .col-md-3
+            .section
+              Adresse mail
+          .col-md-9
+            .comment
+              =mail_to @creator.email
+          .col-md-3
+            .section
+              Téléphone
+          .col-md-9
+            .comment
+              =@creator.phone
+  -if Company.exists?(@internship.id_compagny)
+    #comp_cache        
+      .panel.panel-success  
+        .panel-heading
+          %h6
+            = "Fiche entreprise : "        
+            %strong
+              =@company.name
+        .panel-body         
+          .row
+            .col-md-3
+              .section
+                Domaine d'activité
+            .col-md-9
+              .comment
+                =@company.field
+          .row
+            .col-md-3
+              .section
+                Site internet
+            .col-md-9
+              %a.comment{href:"#{@company.web_site}"}
+                =@company.web_site
+          .row
+            .col-md-3
+              .section
+                Contact mail
+            .col-md-9
+              .comment
+                =mail_to @company.mail
+          .row
+            .col-md-3
+              .section
+                Adresse
+            .col-md-9
+              .comment
+                =@company.adress
+          .row
+            .col-md-3
+              .section
+                Téléphone
+            .col-md-9
+              .comment
+                =@company.phone
+          .row
+            .col-md-3
+              .section.color_gris
+                Dernière maj
+            .col-md-9
+              .comment.color_gris
+                =@company.updated_at.to_time.strftime('%B %e at %l:%M %p')            
+        .panel-footer
+          .show_internship
+            - if user_signed_in?
+              .row
+                .col-md-6
+                  .suppr
+                    %a
+                      =button_to 'Editer', { :controller => :companies, :action => 'edit', :id => @company.id }, class: "btn btn-primary", :method => 'get'
+                .col-md-6
+                  .editer
+                    %a 
+                      =button_to "Supprimer", { :controller => :companies, :action => 'destroy', :id => @company.id }, :method => :delete, class: "btn btn-danger"      
+  -else
+    #comp_cache
+      .panel.panel-success  
+        .panel-heading
+          %h6
+            = "La fiche de l'entreprise " 
+            %strong
+              =@internship.comp
+            =" n'existe pas encore"        
+        .panel-body         
+          .row
+            .col-md-6
+              .section
+                Choisir une entreprise dans la liste :
+          .row
+            .col-md-6
+              .section
+                Elle n'est pas présente ? Ajoutez-la !
+            .col-md-6
+              .comment
+                %a
+                  =button_to 'Créer la page', {:controller => :companies, :action => 'new', :name => @internship.comp}, :method => 'get', class: "btn btn-primary"
+
+
+      
 
   .panel.panel-info
     .panel-heading
       %h6
         = "Fiche stage chez :  "
         %strong
-          =@internship.comp
+          #info_comp.label.label-info
+            =@internship.comp
         #info_creator.label.label-info
-          ="Par "+@creator.firts_name+" "+@creator.name
+          -if current_user.id==@creator.id
+            ="Par YOU!"
+          -else
+            ="Par "+@creator.firts_name+" "+@creator.name
     .panel-body
       .row
         .col-md-3
@@ -70,7 +163,22 @@
             Stage
         .col-md-9
           .comment
-            =@internship.schoolyear.to_s+"A"
+            =@internship.schoolyear.to_s+" A"
+      .separateur 
+      .row
+        .col-md-3
+          .section.color_gris
+            Crée le
+        .col-md-9
+          .comment.color_gris
+            =@internship.created_at.to_time.strftime('%B %e at %l:%M %p')            
+      .row
+        .col-md-3
+          .section.color_gris
+            Dernière maj
+        .col-md-9
+          .comment.color_gris
+            =@internship.updated_at.to_time.strftime('%B %e at %l:%M %p')            
     .panel-footer
       .show_internship
         - if current_user.id==@internship.user_id
@@ -86,18 +194,57 @@
         - else
           %a
             =button_to 'Signaler', {:controller => :internships, :action => 'edit', :id => @internship.id}, class: "btn btn-danger", :method=> 'get' 
--else 
-  %p 
-    ="Page non disponible hors connection !"
+-else
+  %h5
+    ="Hello stranger"
+    %small
+      ="veuillez vous connecter ou vous inscrire pour accéder au site !"
+  #banierehc
+    .row
+      .col-md-3
+        .center
+          %img{alt: "Calendar", src: "/images/icons/svg/calendar.svg"}
+      .col-md-3
+        .center
+          %img{src: "/images/icons/svg/compas.svg"}
+      .col-md-3
+        .center
+          %img{src: "/images/icons/svg/pencils.svg"}
+      .col-md-3
+        .center
+          %img{src: "/images/icons/svg/retina.svg"}
+    .row
+      .col-md-3
+        .center
+          %h6 Vous cherchez un stage et vous manquez d'inspiration ?        
+      .col-md-3
+        .center
+          %h6 Vous ne connaissez pas beaucoup d'entreprises de la région ?
+      .col-md-3
+        .center
+          %h6 Vous êtes un ancien qui souhaite contribuer au réseau des iiens ?
+      .col-md-3
+        .center                         
+          %h6 Inscrivez-vous, découvrez et partagez !
+  .row
+    .col-md-6
+      #btnhc_connection
+        =button_to "Se connecter", new_user_session_path, class: "btn btn-primary btn-lg", :method => "get"
+    .col-md-6
+      #btnhc_inscription
+        =button_to "S'inscrire", new_user_registration_path, class: "btn btn-inverse btn-lg", :method => "get" 
+
 
 
 :javascript
 $(document).ready(function() {
 
   $("#info_creator").click(function(event) {
-    event.preventDefault();
-    $(".panel.panel-warning").toggle("fast"); 
-    console.log("ok");
+    $("#user_cache").toggle("fast"); 
+  });
+
+  $("#info_comp").click(function(event) {
+    $("#comp_cache").toggle("fast"); 
   });
 
 });

@@ -45,7 +45,12 @@ end
 gem 'pg_search'
 
 gem 'will_paginate', '~> 3.0'
+gem 'bootstrap-will_paginate'
 gem 'bootstrap_form'
+
+group :production do
+	gem 'rails_12factor'
+end
 #gem 'sunspot_rails'
 #gem 'sunspot_solr'
 

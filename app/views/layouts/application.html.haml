@@ -17,13 +17,30 @@
         / Collect the nav links, forms, and other content for toggling
         #bs-example-navbar-collapse-1.collapse.navbar-collapse
           %ul.nav.navbar-nav
+            
+            %li.dropdown
+              %a.dropdown-toggle{href:"", "data-toggle"=>"dropdown", id:"text-nav"} 
+                ="Stage"
+              %ul.dropdown-menu
+                %li
+                  %a{href:"/internships/new", id:"text-dropdown"} 
+                    ="+ Stage"
+                %li
+                  %a{href:"/internships/show_all", id:"text-dropdown"} 
+                    ="Voir tous"
+
+            %li.dropdown
+              %a.dropdown-toggle{href:"", "data-toggle"=>"dropdown", id:"text-nav"} 
+                ="Entreprise"
+              %ul.dropdown-menu
+                %li
+                  %a{href:"/companies/new", id:"text-dropdown"} 
+                    ="+ Entreprise"
+                %li
+                  %a{href:"/companies/show_all", id:"text-dropdown"} 
+                    ="Voir toutes"
             %li
-              #ajoutstage
-              %a{href: "/internships/new", "data-placement"=>"bottom", "data-toggle"=>"tooltip", title: "Cliquer pour ajouter un témoignage de stage"} ++ Stage
-            %li
-              %a{href: "/companies/new"} ++ Fiche entreprise
-            %li
-              %a{"data-target" => ".bs-example-modal-lg", "data-toggle" => "modal"} A propos
+              %a{href: "", "data-target" => ".bs-example-modal-lg", "data-toggle" => "modal", id:"text-nav"} A propos
               .modal.fade.bs-example-modal-lg{"aria-hidden" => "true", "aria-labelledby" => "myLargeModalLabel", role: "dialog", tabindex: "-1"}
                 .modal-dialog.modal-lg
                   .modal-content
@@ -32,7 +49,7 @@
                       %h4 
                         Stagiie
                         %small 
-                          Pour le partage d'expériences entre ensiiens
+                          Pour le partage d'expériences entre iiens
                     .modal-body
                       %h6 Quel est le but de ce site ?
                       %p Cette application web est destinée à l'ensemble des étudiants de l'ENSIIE, école nationale supérieure d'informatique pour l'industrie et l'entreprise. Elle permet aux étudiants qui recherchent un stage d'été d'obtenir des informations, des exemples de ce qu'il est possible de faire dans un stage ou encore d'avoir accès à une base de données d'entreprises qui ont des relations avec l'école.               
@@ -45,27 +62,31 @@
                           %p Aurélie Pallas
                         %li
                           %p Olivier Staub
+                      %p Dernière maj du site le 11 avril 2014
+
                     .modal-footer
                       %button.btn.btn-danger{"data-dismiss" => "modal", type: "button"} Fermer
+
           %ul.nav.navbar-nav.navbar-right
             - if user_signed_in?
               %li
-                = link_to current_user.firts_name+' '+current_user.name, edit_user_registration_path, :class => 'navbar-link'
+                = link_to current_user.firts_name+' '+current_user.name, edit_user_registration_path, :class => 'navbar-link', id:"text-nav-right"
               %li
-                \#{link_to "Se déconnecter", destroy_user_session_path, method: :delete, :class => 'navbar-link'}
+                \#{link_to "Se déconnecter", destroy_user_session_path, method: :delete, :class => 'navbar-link', id:"text-nav-right"}
             - else 
               - if admin_signed_in?
                 Admin is
                 =succeed "." do
                   %strong=current_admin.email
-                =link_to 'Edit profile', edit_admin_registration_path, :class => 'navbar-link'
+                =link_to 'Edit profile', edit_admin_registration_path, :class => 'navbar-link', id:"text-nav-right"
                 %li
-                  \#{link_to "Logout", destroy_admin_session_path, method: :delete, :class => 'navbar-link'}
+                  \#{link_to "Logout", destroy_admin_session_path, method: :delete, :class => 'navbar-link', id:"text-nav"}
               - else
                 %li
-                  = link_to "S'inscrire", new_user_registration_path, :class => 'navbar-link'
+                  = link_to "S'inscrire", new_user_registration_path, :class => 'navbar-link', id:"text-nav-right"
                 %li
-                  \#{link_to "Se connecter", new_user_session_path, :class => 'navbar-link'}          
+                  \#{link_to "Se connecter", new_user_session_path, :class => 'navbar-link', id:"text-nav-right"}          
+    
     .container
       .titre
         %h4
@@ -75,5 +96,8 @@
         .alert.alert-success.alert-dissmissable
           %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", type: "button"} ×
           = flash[:alert]
+    
     .container
-      = yield
+      #body
+        = yield
+

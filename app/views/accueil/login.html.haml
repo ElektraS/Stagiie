@@ -5,10 +5,17 @@
 			=@current_user.firts_name+" "+@current_user.name 
 	.row
 		.col-md-6
-			%h5 Les Stages
+			%h5 
+				="Stages récents"
+				#show_all_int.label.label-default
+					%a{href:"/internships/new"}
+						="+"
+				#show_all_int.label.label-default
+					%a{href: "/internships/show_all"}
+						="Voir tous"          
 			-@internships.reverse.each do |i|
 				.panel.panel-info
-					.panel-heading	
+					.panel-heading  
 						= "@ "+i.comp
 					.panel-body
 						.row
@@ -25,10 +32,31 @@
 							.col-md-6
 								.comment
 									= i.supervisor
+						.row
+							.col-md-5
+								.section
+									Sujet et commentaire
+							.col-md-6
+								.comment
+									= truncate(i.commentary, :length => 25, :separator => ' ')
 					.panel-footer
-						=link_to 'Voir la fiche', {:controller => :internships, :action => :show, :id => i.id}	
+						.row
+							.col-md-6.indication_ds_panelfooter
+								=link_to 'Voir la fiche', {:controller => :internships, :action => :show, :id => i.id}  
+								-if current_user.id==i.user_id
+									|
+									=link_to 'Editer' ,{:controller => :internships, :action => :edit, :id => i.id}
+							.col-md-6.date_ds_panelfooter
+								="Maj le : "+i.updated_at.to_time.strftime('%B %e at %l:%M %p').to_s
 		.col-md-6
-			%h5 Les entreprises
+			%h5 
+				="Entreprises récentes"
+				#show_all_comp.label.label-default
+					%a{href:"companies/new"}
+						="+"
+				#show_all_comp.label.label-default
+					%a{href: "/companies/show_all"}
+						="Voir toutes"      
 			-@compagny.reverse.each do |j|
 				.panel.panel-success
 					.panel-heading
@@ -46,12 +74,50 @@
 								.section
 									Site internet
 							.col-md-6
-								.comment
-									= j.web_site	
+								%a.comment{href:"#{j.web_site}"}
+									= j.web_site  
 					.panel-footer
-						=link_to 'En savoir plus', {:controller => :companies, :action => :show, :id => j.id}
+						.row
+							.col-md-6.indication_ds_panelfooter
+								=link_to 'En savoir plus', {:controller => :companies, :action => :show, :id => j.id}
+							.col-md-6.date_ds_panelfooter
+								="Maj le : "+j.updated_at.to_time.strftime('%B %e at %l:%M %p').to_s
 -else
 	%h5
 		="Hello stranger"
 		%small
 			="veuillez vous connecter ou vous inscrire pour accéder au site !"
+	#banierehc
+		.row
+			.col-md-3
+				.center
+					%img{alt: "Calendar", src: "/images/icons/svg/calendar.svg"}
+			.col-md-3
+				.center
+					%img{src: "/images/icons/svg/compas.svg"}
+			.col-md-3
+				.center
+					%img{src: "/images/icons/svg/pencils.svg"}
+			.col-md-3
+				.center
+					%img{src: "/images/icons/svg/retina.svg"}
+		.row
+			.col-md-3
+				.center
+					%h6 Vous cherchez un stage et vous manquez d'inspiration ?        
+			.col-md-3
+				.center
+					%h6 Vous ne connaissez pas beaucoup d'entreprises de la région ?
+			.col-md-3
+				.center
+					%h6 Vous êtes un ancien qui souhaite contribuer au réseau des iiens ?
+			.col-md-3
+				.center                         
+					%h6 Inscrivez-vous, découvrez et partagez !
+	.row
+		.col-md-6
+			#btnhc_connection
+				=button_to "Se connecter", new_user_session_path, class: "btn btn-primary btn-lg", :method => "get"
+		.col-md-6
+			#btnhc_inscription
+				=button_to "S'inscrire", new_user_registration_path, class: "btn btn-inverse btn-lg", :method => "get" 

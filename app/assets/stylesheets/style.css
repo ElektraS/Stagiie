@@ -1,6 +1,12 @@
 body
 {
-	background-color: #F5F5F5;
+	background-image: url("background.png");
+	background-attachment: fixed;
+}
+
+
+#body {
+
 }
 
 .titre
@@ -14,6 +20,10 @@ body
 	padding-left: 20px;
 	margin-top: 5px;
 	margin-bottom: 25px;
+}
+
+.titre:hover {
+	box-shadow: 0px 0px 10px #FFFFFF inset;
 }
 
 .small {
@@ -30,18 +40,20 @@ body
 	background-color: #3498db !important;
 }
 
+.panel-heading:hover{
+	box-shadow: 0px 0px 5px #FFFFFF inset;
+}
+
 .panel-info>.panel-body {
 	border-top-color:#bce8f1;
 }
 
-.panel.panel-warning {
-	display: none;
-}
+
 
 .panel-warning>.panel-heading {
 	color:#FFFFFF;
 	background-image: none;
-	background-color: #9b59b6 !important;
+	background-color: #7f8c8d !important;
 }
 
 .label.label-info {
@@ -52,8 +64,9 @@ body
 .panel-success>.panel-heading {
 	color:#FFFFFF;
 	background-image: none; 
-	background-color: #1abc9c !important;
+	background-color: #9b59b6 !important;
 }
+
 
 .sign_in {
 	text-align: center;
@@ -71,8 +84,21 @@ body
 	text-align: right;
 }
 
+.date_ds_panelfooter {
+	text-align: right;
+	color: #7f8c8d;
+}
+
+.indication_ds_panelfooter {
+	text-align: left;
+}
+
 .editer {
 	text-align: left;
+}
+
+.color_gris {
+	color: #7f8c8d;
 }
 
 h3 small, h5 small {
@@ -100,7 +126,7 @@ h3 small, h5 small {
 .alert-success {
 	color:#FFFFFF;
 	background-image: none; 
-	background-color: #95a5a6 !important;
+	background-color: #2c3e50 !important;
 }
 
 .button.close {
@@ -112,3 +138,80 @@ h3 small, h5 small {
 	font-weight: bold;
 }
 
+#about > a {
+	cursor: pointer;
+}
+
+#show_all_int {
+	background-color: #2980b9;
+	cursor: pointer;
+}
+
+#show_all_int:hover {
+	background-color: #3498db;
+	cursor:pointer;
+}
+
+#show_all_comp {
+	background-color: #8e44ad;
+	cursor: pointer;
+}
+
+#show_all_comp:hover {
+	background-color: #9b59b6;
+	cursor:pointer;
+}
+
+.label.label-default> a {
+	color:#FFFFFF !important;
+	font-size: 18px;
+}
+
+.dropdown-menu {
+	background-color: #000000 !important;
+}
+
+#text-nav {
+	font-size: 18px !important;
+}
+
+#text-nav-right {
+	font-size: 18px;
+}
+
+#text-dropdown {
+	font-size: 17px;
+}
+
+#banierehc 
+{	margin-top: 30px;
+	margin-bottom: 30px;
+	padding: 20px;
+	background-color: #f5f5f5;
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px #AAAAAA;
+}
+
+#btnhc_connection {
+	text-align: right;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+#btnhc_inscription {
+	text-align: left;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+#new_comp {
+	display:none;
+}
+
+#comp_cache {
+	display: none;
+}
+
+#user_cache {
+	display: none;
+}

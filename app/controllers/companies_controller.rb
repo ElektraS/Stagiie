@@ -1,7 +1,7 @@
 class CompaniesController < ApplicationController
   def new
   	if user_signed_in?
-  		@company=Company.new
+  		@company=Company.new(:name=>params[:name])
   	end
   end
 
@@ -10,7 +10,7 @@ class CompaniesController < ApplicationController
 	  	@company=Company.new company_params
       @company.user_id=current_user.id
 	  	@company.save
-      if @internship.persisted?
+      if @company.persisted?
         flash[:alert_success] = "Fiche enregistrée"
         redirect_to "/companies/#{@company.id}"
       end
@@ -22,7 +22,7 @@ class CompaniesController < ApplicationController
 
       @company = Company.find params[:id]
       @company.destroy        
-      if @internship.destroyed?
+      if @company.destroyed?
           flash[:alert] = "Fiche supprimée"
           redirect_to "/"
       end
@@ -35,6 +35,11 @@ class CompaniesController < ApplicationController
     end
   end
 
+  def show_all
+    if user_signed_in?
+      @company = Company.all.paginate(:page => params[:page], :per_page => 5)
+    end
+  end
 
   def edit
     if user_signed_in?
