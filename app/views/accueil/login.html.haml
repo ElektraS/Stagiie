@@ -133,10 +133,10 @@
 			.panel-heading
 				%h6
 					="Liste des fiches de stages : "
-					#voir_accepte.label.label-success
-						=link_to "Fiches non signalées", :controller => "accueil", :action => "login", :approved => "true"
-					#voir_attente.label.label-danger
-						=link_to "Fiches signalées",:controller => "accueil", :action => "login", :approved => "false"
+					#voir_accepte.label.label-danger
+						=link_to "Fiches non signalées", :controller => "accueil", :action => "login", :signaled => "true"
+					#voir_attente.label.label-success
+						=link_to "Fiches signalées",:controller => "accueil", :action => "login", :signaled => "false"
 
 
 			.panel-body         			
@@ -155,7 +155,7 @@
 								=i.id
 						.col-md-4
 							.comment
-								-if i.approved?
+								-if i.signaled?
 									#user_valide
 										="Non signalée"
 								-else
@@ -163,10 +163,10 @@
 										="Signalée"
 						.col-md-4
 							.comment
-								-if !i.approved?
+								-if !i.signaled?
 									=link_to "Enlever le signalement",:controller => "internships", :action => "unsignal", id: i.id
 								-else
-									="Supprimer"
+									=link_to "Supprimer", :controller => "internships", :action => "destroy", id: i.id
 	-else              
 		%h5
 			="Hello stranger"

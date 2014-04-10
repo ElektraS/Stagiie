@@ -15,11 +15,11 @@ class AccueilController < ApplicationController
 	    	end
 	    end
 
-	    if params[:approved] == "true"
-	      @internship = Internship.find_all_by_approved(true)
+	    if params[:signaled] == "true"
+	      @internship = Internship.find_all_by_signaled(true)
 	    else 
 	    	if !(params[:approved] == "true")
-	    		@internship = Internship.find_all_by_approved(false)
+	    		@internship = Internship.find_all_by_signaled(false)
 	    	else
 	    		@internship = Internship.all
 	    	end
