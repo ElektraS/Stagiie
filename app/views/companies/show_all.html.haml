@@ -27,7 +27,11 @@
 								.comment
 									= j.web_site  
 					.panel-footer
-						=link_to 'En savoir plus', {:controller => :companies, :action => :show, :id => j.id}
+						.row
+							.col-md-6.indication_ds_panelfooter					
+								=link_to 'En savoir plus', {:controller => :companies, :action => :show, :id => j.id}
+							.col-md-6.date_ds_panelfooter
+								="Maj le : "+j.updated_at.to_time.strftime('%B %e at %l:%M %p').to_s    						
 	.center
 		= will_paginate(@company, :renderer => WillPaginate::ActionView::LinkRenderer)
 
