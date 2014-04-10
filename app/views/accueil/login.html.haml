@@ -133,10 +133,10 @@
 			.panel-heading
 				%h6
 					="Liste des fiches de stages : "
-					#voir_accepte.label.label-danger
-						=link_to "Fiches non signalées", :controller => "accueil", :action => "login", :signaled => "true"
-					#voir_attente.label.label-success
-						=link_to "Fiches signalées",:controller => "accueil", :action => "login", :signaled => "false"
+					#voir_accepte.label.label-success
+						=link_to "Fiches non signalées", :controller => "accueil", :action => "login", :signaled => "false"
+					#voir_attente.label.label-danger
+						=link_to "Fiches signalées",:controller => "accueil", :action => "login", :signaled => "true"
 
 
 			.panel-body         			
@@ -156,14 +156,14 @@
 						.col-md-4
 							.comment
 								-if i.signaled?
-									#user_valide
-										="Non signalée"
-								-else
 									#user_nonvalide
 										="Signalée"
+								-else
+									#user_valide
+										="Non signalée"
 						.col-md-4
 							.comment
-								-if !i.signaled?
+								-if i.signaled?
 									=link_to "Enlever le signalement",:controller => "internships", :action => "unsignal", id: i.id
 								-else
 									=link_to "Supprimer", :controller => "internships", :action => "destroy", id: i.id
