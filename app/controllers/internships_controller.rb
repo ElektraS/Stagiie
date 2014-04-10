@@ -103,6 +103,7 @@ class InternshipsController < ApplicationController
     if user_signed_in?
       @internship = Internship.find_by_id(params[:id])
       @internship.update_attributes(:approved => true)
+      redirect_to "/"
     end
   end
 
@@ -111,6 +112,7 @@ class InternshipsController < ApplicationController
     if admin_signed_in?
       @internship = Internship.find_by_id(params[:id])
       @internship.update_attributes(:approved => false)
+      redirect_to "/"
     end
   end
 
