@@ -73,7 +73,6 @@
                 = form_tag("/internships/search", method: "post", class: "navbar-form") do
                   %div
                     %input.form-control{type: "text", name: "mot"}
-                    = select_tag 'type' ,options_for_select(["Entreprise", "Domaine / Technologie"]), :id => "type" 
                     %button.btn.btn-inverse{type: "submit"}
                       Rechercher
               %li
