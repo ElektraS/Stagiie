@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   def validate
   	@user = User.find(params[:id])
     @user=@user.update_attribute('approved', 'true')
+    redirect_to "/"
   end
 
  

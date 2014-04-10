@@ -59,13 +59,16 @@ class InternshipsController < ApplicationController
       @internship = Internship.find(params[:id])
       
       @internship.comp=Company.find(internship_params[:comp]).name
+          
       @internship.id_compagny=internship_params[:comp]
 
       respond_to do |f|
         if @internship.update internship_params
+          @internship.update :comp => Company.find(internship_params[:comp]).name
           f.html { redirect_to(@internship,
                         :alert => 'La fiche a été mise à jour') }
           f.xml  { head :ok }
+          
         else
           f.html { render :action => "edit" }
           f.xml  { render :xml => @internship.errors,
@@ -112,6 +115,9 @@ class InternshipsController < ApplicationController
     if user_signed_in?
       @internship = Internship.find_by_id(params[:id])
       @internship.update_attribute('signaled', 'true')
+
+      redirect_to "/"
+
     end
   end
 
@@ -120,6 +126,9 @@ class InternshipsController < ApplicationController
     if admin_signed_in?
       @internship = Internship.find_by_id(params[:id])
       @internship.update_attributes(:signaled => 'false')
+
+      redirect_to "/"
+
     end
   end
 
