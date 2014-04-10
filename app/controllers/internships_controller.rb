@@ -86,15 +86,15 @@ class InternshipsController < ApplicationController
 
   def search
     puts params[:type]
-    if params[:type] = "Company"
+    if params[:type] == "Entreprise"
       @company = Company.where("name like ?", '%' +params[:mot]+'%').paginate(:page => params[:page], :per_page => 4)
       @internship = Internship.where("comp like ?", '%' +params[:mot]+'%').paginate(:page => params[:page], :per_page => 4)
     else
-      if params[:type] = "Field"
+      if params[:type] == "Domaine / Technologie"
         @internship = Internship.where("field like ?", '%' +params[:mot]+'%').paginate(:page => params[:page], :per_page => 4)
         @company = Company.where("field like ?", '%' +params[:mot]+'%').paginate(:page => params[:page], :per_page => 4)
       else
-        flash[:alert] = "Erreur de recherche"  
+        flash[:alert] = "Aucun resultat trouvé"  
       end
     end
   end
