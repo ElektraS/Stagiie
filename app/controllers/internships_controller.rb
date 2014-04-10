@@ -36,6 +36,15 @@ class InternshipsController < ApplicationController
           redirect_to "/"
         end
     end
+
+    if admin_signed_in?
+      @internship = Internship.find params[:id]
+      @internship.destroy
+        if @internship.destroyed?
+          flash[:alert] = "Fiche supprimée"
+          redirect_to "/index"
+        end
+    end
   end
 
   def edit
@@ -105,8 +114,10 @@ class InternshipsController < ApplicationController
   def signal
     if user_signed_in?
       @internship = Internship.find_by_id(params[:id])
-      @internship.update_attributes(:approved => true)
+      @internship.update_attribute('signaled', 'true')
+
       redirect_to "/"
+
     end
   end
 
@@ -114,8 +125,10 @@ class InternshipsController < ApplicationController
 
     if admin_signed_in?
       @internship = Internship.find_by_id(params[:id])
-      @internship.update_attributes(:approved => false)
+      @internship.update_attributes(:signaled => 'false')
+
       redirect_to "/"
+
     end
   end
 
