@@ -1,6 +1,149 @@
-- @company.each do |c|
-  %p= c.name
+%h5
+	="Résultats de la recherche :"
+%h6
+	="Les Entreprises"
 
-- @internship.each do |i|
-  %p= i.field
+.row
+	.col-md-6
+		%h6
+			="Parmis les stages"
+			#show_all_int.label.label-default
+				%a{href:"/internships/new"}
+					="+"
+			#show_all_int.label.label-default
+				%a{href: "/internships/show_all"}
+					="Voir tous"        			
+
+		-@internship_1.reverse.each do |i|
+			.panel.panel-info
+				.panel-heading  
+					= "@ "+i.comp
+				.panel-body
+					.row
+						.col-md-5
+							.section
+								Technologie
+						.col-md-6
+							.comment 
+								= i.field
+					.row
+						.col-md-5
+							.section
+								Maitre de stage
+						.col-md-6
+							.comment
+								= i.supervisor
+					.row
+						.col-md-5
+							.section
+								Sujet et commentaire
+						.col-md-6
+							.comment
+								= truncate(i.commentary, :length => 25, :separator => ' ')
+				.panel-footer
+					.row
+						.col-md-6.indication_ds_panelfooter
+							=link_to 'Voir la fiche', {:controller => :internships, :action => :show, :id => i.id}  
+							-if current_user.id==i.user_id
+								|
+								=link_to 'Editer' ,{:controller => :internships, :action => :edit, :id => i.id}
+						.col-md-6.date_ds_panelfooter
+							="Maj le : "+i.updated_at.to_time.strftime('%B %e at %l:%M %p').to_s 		
+
+		-@internship_2.reverse.each do |i|
+			.panel.panel-info
+				.panel-heading  
+					= "@ "+i.comp
+				.panel-body
+					.row
+						.col-md-5
+							.section
+								Technologie
+						.col-md-6
+							.comment 
+								= i.field
+					.row
+						.col-md-5
+							.section
+								Maitre de stage
+						.col-md-6
+							.comment
+								= i.supervisor
+					.row
+						.col-md-5
+							.section
+								Sujet et commentaire
+						.col-md-6
+							.comment
+								= truncate(i.commentary, :length => 25, :separator => ' ')
+				.panel-footer
+					.row
+						.col-md-6.indication_ds_panelfooter
+							=link_to 'Voir la fiche', {:controller => :internships, :action => :show, :id => i.id}  
+							-if current_user.id==i.user_id
+								|
+								=link_to 'Editer' ,{:controller => :internships, :action => :edit, :id => i.id}
+						.col-md-6.date_ds_panelfooter
+							="Maj le : "+i.updated_at.to_time.strftime('%B %e at %l:%M %p').to_s  
+
+	.col-md-6
+		%h6 
+			="Parmis les entreprises"
+			#show_all_comp.label.label-default
+				%a{href:"companies/new"}
+					="+"
+			#show_all_comp.label.label-default
+				%a{href: "/companies/show_all"}
+					="Voir toutes"      														
+		-@company_1.reverse.each do |j|
+			.panel.panel-success
+				.panel-heading
+					= j.name
+				.panel-body
+					.row
+						.col-md-5
+							.section
+								Domaine
+						.col-md-6
+							.comment 
+								= j.field
+					.row
+						.col-md-5
+							.section
+								Site internet
+						.col-md-6
+							%a.comment{href:"#{j.web_site}"}
+								= j.web_site  
+				.panel-footer
+					.row
+						.col-md-6.indication_ds_panelfooter
+							=link_to 'En savoir plus', {:controller => :companies, :action => :show, :id => j.id}
+						.col-md-6.date_ds_panelfooter
+							="Maj le : "+j.updated_at.to_time.strftime('%B %e at %l:%M %p').to_s
+
+		-@company_2.reverse.each do |j|
+			.panel.panel-success
+				.panel-heading
+					= j.name
+				.panel-body
+					.row
+						.col-md-5
+							.section
+								Domaine
+						.col-md-6
+							.comment 
+								= j.field
+					.row
+						.col-md-5
+							.section
+								Site internet
+						.col-md-6
+							%a.comment{href:"#{j.web_site}"}
+								= j.web_site  
+				.panel-footer
+					.row
+						.col-md-6.indication_ds_panelfooter
+							=link_to 'En savoir plus', {:controller => :companies, :action => :show, :id => j.id}
+						.col-md-6.date_ds_panelfooter
+							="Maj le : "+j.updated_at.to_time.strftime('%B %e at %l:%M %p').to_s							
 

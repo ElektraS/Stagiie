@@ -100,6 +100,9 @@
               =@internship.comp
             =" n'existe pas encore"        
         .panel-body         
+          = bootstrap_form_for(@internship, layout: :horizontal, label_col: "col-sm-4", control_col: "col-sm-6") do |f|
+            =f.select :comp, options_for_select(@liste), label: "Choisir une entreprise dans la liste", placeholder: "Choisir dans la liste ou créer une nouvelle fiche"
+            = f.primary "Enregistrer", layout: :inline
           .row
             .col-md-6
               .section
@@ -193,7 +196,7 @@
                   =button_to "Supprimer", { :method => 'get', :controller => :internships, :action => 'destroy', :id => @internship.id }, :method => :delete, class: "btn btn-danger"
         - else
           %a
-            =button_to 'Signaler', {:controller => :internships, :action => 'signal', :id => @internship.id}, class: "btn btn-danger", :method=> 'get' 
+            =button_to 'Signaler', {:method=> 'get', :controller => :internships, :action => 'signal', :id => @internship.id}, class: "btn btn-danger" 
 -else
   %h5
     ="Hello stranger"

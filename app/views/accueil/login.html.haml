@@ -90,10 +90,13 @@
 			.panel-heading
 				%h6
 					="Liste des utilisateurs : "
-					#voir_attente.label.label-danger
-						=link_to "Attente de validation",:controller => "accueil", :action => "login", :approved => "false"
+					#voir_tous.label.label-info
+						=link_to "Tous", :controller => "accueil", :action => "login", :approved => "all"			
 					#voir_accepte.label.label-success
-						=link_to "Validés", :controller => "accueil", :action => "login", :approved => "true"
+						=link_to "Validé", :controller => "accueil", :action => "login", :approved => "true"								
+					#voir_attente.label.label-danger
+						=link_to "En attente de validation",:controller => "accueil", :action => "login", :approved => "false"
+
 
 			.panel-body         			
 				.row
@@ -116,7 +119,7 @@
 										="Validé"
 								-else
 									#user_nonvalide
-										="Attente de validation"
+										="En attente de validation"
 						.col-md-4
 							.comment
 								-if !u.approved?
@@ -130,10 +133,11 @@
 			.panel-heading
 				%h6
 					="Liste des fiches de stages : "
-					#voir_attente.label.label-danger
-						=link_to "Fiches non signalées",:controller => "accueil", :action => "login", :approved => "false"
 					#voir_accepte.label.label-success
-						=link_to "Fiches signalées", :controller => "accueil", :action => "login", :approved => "true"
+						=link_to "Fiches non signalées", :controller => "accueil", :action => "login", :approved => "true"
+					#voir_attente.label.label-danger
+						=link_to "Fiches signalées",:controller => "accueil", :action => "login", :approved => "false"
+
 
 			.panel-body         			
 				.row
@@ -153,14 +157,14 @@
 							.comment
 								-if i.approved?
 									#user_valide
-										="Signalée"
+										="Non signalée"
 								-else
 									#user_nonvalide
-										="Non signalée"
+										="Signalée"
 						.col-md-4
 							.comment
 								-if !i.approved?
-									=link_to "Enlever le signalement",:controller => "internships", :action => "unsignaled", id: u.id
+									=link_to "Enlever le signalement",:controller => "internships", :action => "unsignal", id: i.id
 								-else
 									="Supprimer"
 	-else              

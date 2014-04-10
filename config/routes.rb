@@ -19,9 +19,10 @@ ProjetWeb::Application.routes.draw do
   get "companies/show_all" => "companies#show_all"
   post "internships/search" => "internships#search"
   get "internships/result" 
+  post "internships/signal" 
+  get "internships/unsignal"
 
   root 'internships#index'
-
 
   resources :internships
   resources :companies

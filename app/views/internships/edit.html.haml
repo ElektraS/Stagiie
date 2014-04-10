@@ -8,8 +8,14 @@
 					%ul
 						- @internship.errors.full_messages.each do |msg|
 							%li = msg
-			%div
-				= f.text_field :comp, label: "Entreprise", placeholder: "Nom"
+
+							
+			#select
+				=f.select :comp, options_for_select(@liste), label: "Entreprise", placeholder: "Choisir dans la liste ou créer une nouvelle fiche"
+			.row
+				.center
+					#link_add_company
+						=link_to "Une entreprise est manquante ? Ajoutez là !", "/companies/new"
 			%div
 				= f.text_field :field, label: "Domaine", placeholder: "Techniques et/ou technologies utilisées pendant le stage"
 			%div

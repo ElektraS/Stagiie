@@ -5,11 +5,11 @@ class AccueilController < ApplicationController
   		@compagny= Company.last(5)
   	end
   	if admin_signed_in?
-	    if params[:approved] == "true"
-	      @user = User.find_all_by_approved(true)
+	    if params[:approved] == "false"
+	      @user = User.find_all_by_approved(((false) or (nil)))
 	    else 
-	    	if !(params[:approved] == "true")
-	    		@user = User.find_all_by_approved(false)
+	    	if params[:approved] =="true"
+	    		@user = User.find_all_by_approved(true)
 	    	else
 	    		@user = User.all
 	    	end

@@ -1,9 +1,7 @@
 class InternshipsController < ApplicationController
   def new
   	if user_signed_in?
-      @liste=Company.all.map {|c| [c.name, c.id]}
-      @liste[@liste.length]=["Autre"]
-      @liste=@liste.reverse        
+      @liste=Company.all.map {|c| [c.name, c.id]}      
   		@internship=Internship.new
   	end
   end
@@ -43,13 +41,16 @@ class InternshipsController < ApplicationController
   def edit
     if user_signed_in?
       @internship = Internship.find params[:id]
+      @liste=Company.all.map {|c| [c.name, c.id]}
     end
   end
 
   def update
     if user_signed_in?
       @internship = Internship.find(params[:id])
-     
+      @internship.comp=Company.find(internship_params[:comp]).name
+      @internship.id_compagny=internship_params[:comp]
+
       respond_to do |f|
         if @internship.update internship_params
           f.html { redirect_to(@internship,
@@ -71,9 +72,11 @@ class InternshipsController < ApplicationController
   def show
     if user_signed_in?
       @internship = Internship.find params[:id]
-      @creator=User.find(@internship.user_id)
+      @creator=User.find(@internship.user_id)    
       if Company.exists?(@internship.id_compagny)
         @company=Company.find(@internship.id_compagny)
+      else
+        @liste=Company.all.map {|c| [c.name, c.id]}
       end
     end
   end
@@ -86,27 +89,28 @@ class InternshipsController < ApplicationController
 
   def search
     puts params[:type]
-    if params[:type] == "Entreprise"
-      @company = Company.where("name like ?", '%' +params[:mot]+'%').paginate(:page => params[:page], :per_page => 5)
-      @internship = Internship.where("comp like ?", '%' +params[:mot]+'%').paginate(:page => params[:page], :per_page => 5)
-    else
-      if params[:type] == "Domaine / Technologie"
-        @internship = Internship.where("field like ?", '%' +params[:mot]+'%').paginate(:page => params[:page], :per_page => 5)
-        @company = Company.where("field like ?", '%' +params[:mot]+'%').paginate(:page => params[:page], :per_page => 5)
-      else
-        flash[:alert] = "Aucun resultat trouvé"  
-      end
-    end
+
+    @company_1 = Company.where("name like ?", '%' +params[:mot]+'%').paginate(:page => params[:page], :per_page => 5)
+    @internship_1 = Internship.where("comp like ?", '%' +params[:mot]+'%').paginate(:page => params[:page], :per_page => 5)
+
+    @internship_2 = Internship.where("field like ?", '%' +params[:mot]+'%').paginate(:page => params[:page], :per_page => 5)
+    @company_2 = Company.where("field like ?", '%' +params[:mot]+'%').paginate(:page => params[:page], :per_page => 5)
+    
   end
 
   def signal
-    @internship = Internship.find(params[:id])
-    @internship=@user.update_attribute('approved', 'true')
+    if user_signed_in?
+      @internship = Internship.find_by_id(params[:id])
+      @internship.update_attributes(:approved => true)
+    end
   end
 
   def unsignal
-    @internship = Internship.find(params[:id])
-    @internship=@user.update_attribute('approved', 'false')
+
+    if admin_signed_in?
+      @internship = Internship.find_by_id(params[:id])
+      @internship.update_attributes(:approved => false)
+    end
   end
 
   protected
