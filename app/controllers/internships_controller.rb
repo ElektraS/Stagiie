@@ -114,7 +114,7 @@ class InternshipsController < ApplicationController
   def signal
     if user_signed_in?
       @internship = Internship.find_by_id(params[:id])
-      @internship.update_attribute('signaled', 'true')
+      @internship.update :signaled => true
 
       redirect_to "/"
 
@@ -122,13 +122,11 @@ class InternshipsController < ApplicationController
   end
 
   def unsignal
-
     if admin_signed_in?
       @internship = Internship.find_by_id(params[:id])
       @internship.update_attributes(:signaled => 'false')
 
       redirect_to "/"
-
     end
   end
 
