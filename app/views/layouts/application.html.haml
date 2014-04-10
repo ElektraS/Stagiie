@@ -75,12 +75,10 @@
                 \#{link_to "Se déconnecter", destroy_user_session_path, method: :delete, :class => 'navbar-link', id:"text-nav-right"}
             - else 
               - if admin_signed_in?
-                Admin is
-                =succeed "." do
-                  %strong=current_admin.email
-                =link_to 'Edit profile', edit_admin_registration_path, :class => 'navbar-link', id:"text-nav-right"
                 %li
-                  \#{link_to "Logout", destroy_admin_session_path, method: :delete, :class => 'navbar-link', id:"text-nav"}
+                  =link_to current_admin.firts_name+' '+current_admin.name, edit_admin_registration_path, :class => 'navbar-link', id:"text-nav-right"
+                %li
+                  \#{link_to "Se déconnecter", destroy_admin_session_path, method: :delete, :class => 'navbar-link', id:"text-nav"}
               - else
                 %li
                   = link_to "S'inscrire", new_user_registration_path, :class => 'navbar-link', id:"text-nav-right"

@@ -215,3 +215,54 @@ h3 small, h5 small {
 #user_cache {
 	display: none;
 }
+
+#user_valide {
+	text-align: right;
+	font-weight: bold;
+	color: #2ecc71;
+}
+
+#user_nonvalide {
+	text-align: right;
+	font-weight: bold;
+	color: #e74c3c;
+}
+
+#voir_tous a {
+	color: #FFFFFF;
+	cursor: pointer;
+}
+
+#voir_tous {
+	background-color: #3498db;
+}
+
+#voir_tous:hover {
+	background-color: #2980b9;
+}
+
+#voir_attente a {
+	color:#FFFFFF;
+	cursor:pointer;
+}
+
+#voir_attente {
+	background-color: #e74c3c;
+}
+
+#voir_attente:hover {
+	background-color: #c0392b;
+}
+
+#voir_accepte a {
+	color: #FFFFFF;
+	cursor: pointer;
+}
+
+#voir_accepte {
+	background-color: #2ecc71;
+}
+
+#voir_accepte:hover {
+	background-color: #27ae60;
+}

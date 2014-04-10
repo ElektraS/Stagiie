@@ -1,14 +1,31 @@
 -if admin_signed_in?
-  %h1 Users
+  %h5 Panneau de validation des comptes utilisateurs
 
   = link_to "All Users", :action => "index"
   |
   = link_to "Users awaiting approval", :action => "index", :approved => nil
 
-
-  %table
-    - @user.each do |u|
-      %tr
-        %td= u.email
-        %td= u.approved
-        %td= link_to "Valider", :action => "validate", id: u.id
+  .panel-warning
+    .panel-heading
+      %h6
+        ="Liste des utilisateurs"
+    .panel-body
+      .row
+        .col-md-3
+          .section
+            ="Compte"
+        .col-md-3
+          .section
+            ="Etat de validation"
+        
+      -@user.each do |u|
+        .row
+          .col-md-3
+            .section
+              =u.email
+          .col-md-3
+            .comment
+              =u.approved
+          .col-md-3
+            .comment
+              =link_to "Valider", :action => "validate", id: u.id

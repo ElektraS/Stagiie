@@ -61,20 +61,17 @@ ActiveRecord::Schema.define(version: 20140407150909) do
     t.integer  "schoolyear"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "student_id"
     t.integer  "user_id"
     t.integer  "id_compagny"
   end
 
-  add_index "internships", ["student_id"], name: "index_internships_on_student_id", using: :btree
-
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -87,9 +84,10 @@ ActiveRecord::Schema.define(version: 20140407150909) do
     t.integer  "phone"
     t.integer  "nb_internships"
     t.integer  "nb_compagny"
-    t.boolean  "approved"
+    t.boolean  "approved",               default: false, null: false
   end
 
+  add_index "users", ["approved"], name: "index_users_on_approved", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
