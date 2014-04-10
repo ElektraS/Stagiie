@@ -1,7 +1,7 @@
 class InternshipsController < ApplicationController
   def new
   	if user_signed_in?
-      @liste=Company.all.map {|c| [c.name, c.id]}      
+      @liste=Company.all.order(created_at: :asc).map {|c| [c.name, c.id]}      
   		@internship=Internship.new
   	end
   end
@@ -41,7 +41,7 @@ class InternshipsController < ApplicationController
   def edit
     if user_signed_in?
       @internship = Internship.find params[:id]
-      @liste=Company.all.map {|c| [c.name, c.id]}
+      @liste=Company.all.order(created_at: :asc).map {|c| [c.name, c.id]}
     end
   end
 
@@ -80,7 +80,7 @@ class InternshipsController < ApplicationController
       if Company.exists?(@internship.id_compagny)
         @company=Company.find(@internship.id_compagny)
       else
-        @liste=Company.all.map {|c| [c.name, c.id]}
+        @liste=Company.all.order(created_at: :asc).map {|c| [c.name, c.id]}
       end
     end
   end
