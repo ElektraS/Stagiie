@@ -122,8 +122,47 @@
 								-if !u.approved?
 									=link_to "Valider",:controller => "users", :action => "validate", id: u.id
 								-else
-									="Supprimer"			
+									="Supprimer"
 
+		%h5 Panneau de gestion des comptes fiches de stages
+
+		.panel.panel-warning
+			.panel-heading
+				%h6
+					="Liste des fiches de stages : "
+					#voir_attente.label.label-danger
+						=link_to "Fiches non signalées",:controller => "accueil", :action => "login", :approved => "false"
+					#voir_accepte.label.label-success
+						=link_to "Fiches signalées", :controller => "accueil", :action => "login", :approved => "true"
+
+			.panel-body         			
+				.row
+					.col-md-4
+						.section
+							="Compte"
+					.col-md-4
+						.section
+							="Etat"
+		        
+				-@internship.each do |i|
+					.row
+						.col-md-4
+							.section
+								=i.id
+						.col-md-4
+							.comment
+								-if i.approved?
+									#user_valide
+										="Signalée"
+								-else
+									#user_nonvalide
+										="Non signalée"
+						.col-md-4
+							.comment
+								-if !i.approved?
+									=link_to "Enlever le signalement",:controller => "internships", :action => "unsignaled", id: u.id
+								-else
+									="Supprimer"
 	-else              
 		%h5
 			="Hello stranger"

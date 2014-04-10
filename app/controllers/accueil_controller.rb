@@ -14,6 +14,16 @@ class AccueilController < ApplicationController
 	    		@user = User.all
 	    	end
 	    end
+
+	    if params[:approved] == "true"
+	      @internship = Internship.find_all_by_approved(true)
+	    else 
+	    	if !(params[:approved] == "true")
+	    		@internship = Internship.find_all_by_approved(false)
+	    	else
+	    		@internship = Internship.all
+	    	end
+	    end
   	end
   end
 end

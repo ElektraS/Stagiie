@@ -99,6 +99,16 @@ class InternshipsController < ApplicationController
     end
   end
 
+  def signal
+    @internship = Internship.find(params[:id])
+    @internship=@user.update_attribute('approved', 'true')
+  end
+
+  def unsignal
+    @internship = Internship.find(params[:id])
+    @internship=@user.update_attribute('approved', 'false')
+  end
+
   protected
   def internship_params
   	params.require(:internship).permit(:comp, :field, :supervisor, :commentary, :period, :schoolyear)
