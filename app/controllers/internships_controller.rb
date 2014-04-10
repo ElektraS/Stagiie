@@ -89,12 +89,13 @@ class InternshipsController < ApplicationController
     if params[:type] = "Company"
       @company = Company.where("name like ?", '%' +params[:mot]+'%').paginate(:page => params[:page], :per_page => 4)
       @internship = Internship.where("comp like ?", '%' +params[:mot]+'%').paginate(:page => params[:page], :per_page => 4)
-    end 
-    if params[:type] = "Field"
-      @internship = Internship.where("field like ?", '%' +params[:mot]+'%').paginate(:page => params[:page], :per_page => 4)
-      @company = Company.where("field like ?", '%' +params[:mot]+'%').paginate(:page => params[:page], :per_page => 4)
     else
-      flash[:alert] = "Erreur de recherche"  
+      if params[:type] = "Field"
+        @internship = Internship.where("field like ?", '%' +params[:mot]+'%').paginate(:page => params[:page], :per_page => 4)
+        @company = Company.where("field like ?", '%' +params[:mot]+'%').paginate(:page => params[:page], :per_page => 4)
+      else
+        flash[:alert] = "Erreur de recherche"  
+      end
     end
   end
 
