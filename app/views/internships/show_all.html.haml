@@ -49,7 +49,11 @@
 	%h5
 		="Hello stranger"
 		%small
-			="veuillez vous connecter ou vous inscrire pour accéder au site !"
+			="veuillez vous"
+			%a{href:"/users/sign_in"} connecter
+			="ou vous"
+			%a{href:"/users/sign_up"} inscrire
+			="pour accéder au site !"
 	#banierehc
 		.row
 			.col-md-3
