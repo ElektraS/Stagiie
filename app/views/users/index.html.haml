@@ -1,0 +1,14 @@
+-if admin_signed_in?
+  %h1 Users
+
+  = link_to "All Users", :action => "index"
+  |
+  = link_to "Users awaiting approval", :action => "index", :approved => nil
+
+
+  %table
+    - @user.each do |u|
+      %tr
+        %td= u.email
+        %td= u.approved
+        %td= link_to "Valider", :action => "validate", id: u.id

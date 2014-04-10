@@ -9,8 +9,10 @@ ProjetWeb::Application.routes.draw do
   get"/about/us" => "about#us"
 
   get "/" => "internships#search"
+  get "/users/index" 
+  get "/users/validate" => "users#validate"
 
-  root 'internships#index'
+ 
 
   resources :internships
   resources :companies
