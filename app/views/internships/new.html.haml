@@ -1,11 +1,14 @@
 -if user_signed_in?
-	%h4 Ajouter un  stage
+	%h5 Ajouter un stage
  
 	= bootstrap_form_for(@internship, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-8") do |f|
 
 		#select
-			=f.select :comp, options_for_select(@liste), label: "Entreprise", placeholder: "Choisir dans la liste ou créer une nouvelle fiche"	
-
+			=f.select :comp, options_for_select(@liste), label: "Entreprise", placeholder: "Choisir dans la liste ou créer une nouvelle fiche"
+		.row
+			.center
+				#link_add_company
+					=link_to "Une entreprise est manquante ? Ajoutez là !", "/companies/new"
 		%div
 			= f.text_field :field, label: "Domaine", placeholder: "Techniques et/ou technologies utilisées pendant le stage"
 		%div

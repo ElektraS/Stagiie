@@ -1,9 +1,7 @@
 class InternshipsController < ApplicationController
   def new
   	if user_signed_in?
-      @liste=Company.all.map {|c| [c.name, c.id]}
-      @liste[@liste.length]=["Autre"]
-      @liste=@liste.reverse        
+      @liste=Company.all.map {|c| [c.name, c.id]}      
   		@internship=Internship.new
   	end
   end
@@ -43,13 +41,16 @@ class InternshipsController < ApplicationController
   def edit
     if user_signed_in?
       @internship = Internship.find params[:id]
+      @liste=Company.all.map {|c| [c.name, c.id]}
     end
   end
 
   def update
     if user_signed_in?
       @internship = Internship.find(params[:id])
-     
+      @internship.comp=Company.find(internship_params[:comp]).name
+      @internship.id_compagny=internship_params[:comp]
+
       respond_to do |f|
         if @internship.update internship_params
           f.html { redirect_to(@internship,
@@ -71,9 +72,11 @@ class InternshipsController < ApplicationController
   def show
     if user_signed_in?
       @internship = Internship.find params[:id]
-      @creator=User.find(@internship.user_id)
+      @creator=User.find(@internship.user_id)    
       if Company.exists?(@internship.id_compagny)
         @company=Company.find(@internship.id_compagny)
+      else
+        @liste=Company.all.map {|c| [c.name, c.id]}
       end
     end
   end

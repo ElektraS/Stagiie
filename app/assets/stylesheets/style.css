@@ -280,3 +280,8 @@ h3 small, h5 small {
 .control-label {
 	font-size: 18px;
 }
+
+#link_add_company {
+	padding-top: -10px;
+	padding-bottom: 15px;
+}
