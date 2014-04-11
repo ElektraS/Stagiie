@@ -6,7 +6,7 @@ Requirements :
 - Ruby 2.0
 - Rails 4.0
 
-Installation 
+Installation :
 
 - "git clone https://github.com/StaubOliver/ProjetWeb.git"
 - "cd ProjetWeb"
