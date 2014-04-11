@@ -42,7 +42,7 @@ class InternshipsController < ApplicationController
       @internship.destroy
         if @internship.destroyed?
           flash[:alert] = "Fiche supprimée"
-          redirect_to "/index"
+          redirect_to "/"
         end
     end
   end
@@ -115,6 +115,7 @@ class InternshipsController < ApplicationController
     if user_signed_in?
       @internship = Internship.find_by_id(params[:id])
       @internship.update :signaled => true
+      flash[:alert]="La fiche a été signalée aux administrateurs"
 
       redirect_to "/"
 
@@ -125,6 +126,7 @@ class InternshipsController < ApplicationController
     if admin_signed_in?
       @internship = Internship.find_by_id(params[:id])
       @internship.update_attributes(:signaled => 'false')
+      flash[:alert]="Le signalement a été enlevé"
 
       redirect_to "/"
     end
