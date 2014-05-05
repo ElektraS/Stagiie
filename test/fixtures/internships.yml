@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  comp: MyString
+  field: MyString
+  supervisor: MyString
+  commentary: MyText
+  period: MyString
+  schoolyear: 1
+  user_id: 1
+  id_compagny: 1
+
+two:
+  comp: MyString
+  field: MyString
+  supervisor: MyString
+  commentary: MyText
+  period: MyString
+  schoolyear: 1
+  user_id: 1
+  id_compagny: 1
