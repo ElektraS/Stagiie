@@ -1,7 +1,7 @@
 class InternshipsController < ApplicationController
   def new
   	if user_signed_in?
-      @liste=Company.all.map {|c| [c.name, c.id]}      
+      @liste=Company.all.order(created_at: :asc).map {|c| [c.name, c.id]}      
   		@internship=Internship.new
   	end
   end
@@ -42,7 +42,7 @@ class InternshipsController < ApplicationController
       @internship.destroy
         if @internship.destroyed?
           flash[:alert] = "Fiche supprimée"
-          redirect_to "/index"
+          redirect_to "/"
         end
     end
   end
@@ -50,7 +50,7 @@ class InternshipsController < ApplicationController
   def edit
     if user_signed_in?
       @internship = Internship.find params[:id]
-      @liste=Company.all.map {|c| [c.name, c.id]}
+      @liste=Company.all.order(created_at: :asc).map {|c| [c.name, c.id]}
     end
   end
 
@@ -89,7 +89,7 @@ class InternshipsController < ApplicationController
       if Company.exists?(@internship.id_compagny)
         @company=Company.find(@internship.id_compagny)
       else
-        @liste=Company.all.map {|c| [c.name, c.id]}
+        @liste=Company.all.order(created_at: :asc).map {|c| [c.name, c.id]}
       end
     end
   end
@@ -114,7 +114,8 @@ class InternshipsController < ApplicationController
   def signal
     if user_signed_in?
       @internship = Internship.find_by_id(params[:id])
-      @internship.update_attribute('signaled', 'true')
+      @internship.update :signaled => true
+      flash[:alert]="La fiche a été signalée aux administrateurs"
 
       redirect_to "/"
 
@@ -122,13 +123,12 @@ class InternshipsController < ApplicationController
   end
 
   def unsignal
-
     if admin_signed_in?
       @internship = Internship.find_by_id(params[:id])
       @internship.update_attributes(:signaled => 'false')
+      flash[:alert]="Le signalement a été enlevé"
 
       redirect_to "/"
-
     end
   end
 

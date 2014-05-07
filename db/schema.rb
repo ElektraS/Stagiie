@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20140505093016) do
+=======
+ActiveRecord::Schema.define(version: 20140410234516) do
+>>>>>>> 51250cc45c3cdd6811f3df6d2f54c7dc23a43549
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +67,8 @@ ActiveRecord::Schema.define(version: 20140505093016) do
     t.integer  "id_compagny"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "approved",    default: false, null: false
+    t.boolean  "signaled",    default: false
   end
 
   create_table "users", force: true do |t|

@@ -189,7 +189,7 @@
                   =button_to "Supprimer", { :method => 'get', :controller => :internships, :action => 'destroy', :id => @internship.id }, :method => :delete, class: "btn btn-danger"
         - else
           %a
-            =button_to 'Signaler', {:method=> 'get', :controller => :internships, :action => 'signal', :id => @internship.id}, class: "btn btn-danger" 
+            =button_to 'Signaler', {:method => 'get', :controller => :internships, :action => 'signal', :id => @internship.id}, class: "btn btn-danger" 
 -else
   %h5
     ="Hello stranger"
