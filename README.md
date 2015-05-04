@@ -1,4 +1,4 @@
-ProjetWeb
+Stagiie
 =========
 
 Requirements :
@@ -9,7 +9,7 @@ Requirements :
 Installation :
 
 - "git clone https://github.com/ElektraS/Stagiie.git"
-- "cd ProjetWeb"
+- "cd Stagiie"
 - "bundle install"
 - "rake db:setup"
 - "rails s"
