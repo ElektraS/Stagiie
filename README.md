@@ -8,7 +8,7 @@ Requirements :
 
 Installation :
 
-- "git clone https://github.com/StaubOliver/ProjetWeb.git"
+- "git clone https://github.com/ElektraS/Stagiie.git"
 - "cd ProjetWeb"
 - "bundle install"
 - "rake db:setup"
